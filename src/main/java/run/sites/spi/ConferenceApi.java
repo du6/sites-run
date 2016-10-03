@@ -1,14 +1,5 @@
 package main.java.run.sites.spi;
 
-import static main.java.run.sites.service.OfyService.factory;
-import static main.java.run.sites.service.OfyService.ofy;
-
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-
-import javax.inject.Named;
-
 import com.google.api.server.spi.config.Api;
 import com.google.api.server.spi.config.ApiMethod;
 import com.google.api.server.spi.config.ApiMethod.HttpMethod;
@@ -22,6 +13,16 @@ import com.google.appengine.api.taskqueue.Queue;
 import com.google.appengine.api.taskqueue.QueueFactory;
 import com.google.appengine.api.taskqueue.TaskOptions;
 import com.google.appengine.api.users.User;
+import com.googlecode.objectify.Key;
+import com.googlecode.objectify.Work;
+import com.googlecode.objectify.cmd.Query;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
+import javax.inject.Named;
+
 import main.java.run.sites.Constants;
 import main.java.run.sites.domain.Announcement;
 import main.java.run.sites.domain.Conference;
@@ -29,10 +30,9 @@ import main.java.run.sites.domain.Profile;
 import main.java.run.sites.form.ConferenceForm;
 import main.java.run.sites.form.ConferenceQueryForm;
 import main.java.run.sites.form.ProfileForm;
-import main.java.run.sites.form.ProfileForm.TeeShirtSize;
-import com.googlecode.objectify.Key;
-import com.googlecode.objectify.Work;
-import com.googlecode.objectify.cmd.Query;
+
+import static main.java.run.sites.service.OfyService.factory;
+import static main.java.run.sites.service.OfyService.ofy;
 
 /**
  * Defines conference APIs.
@@ -92,7 +92,6 @@ public class ConferenceApi {
         // Get the displayName and teeShirtSize sent by the request.
 
         String displayName = profileForm.getDisplayName();
-        TeeShirtSize teeShirtSize = profileForm.getTeeShirtSize();
 
         // Get the Profile from the datastore if it exists
         // otherwise create a new one
@@ -106,15 +105,12 @@ public class ConferenceApi {
                 displayName = extractDefaultDisplayNameFromEmail(user
                         .getEmail());
             }
-            if (teeShirtSize == null) {
-                teeShirtSize = TeeShirtSize.NOT_SPECIFIED;
-            }
             // Now create a new Profile entity
-            profile = new Profile(userId, displayName, mainEmail, teeShirtSize);
+            profile = new Profile(userId, displayName, mainEmail);
         } else {
             // The Profile entity already exists
             // Update the Profile entity
-            profile.update(displayName, teeShirtSize);
+            profile.update(displayName);
         }
 
         // TODO 3
@@ -165,7 +161,7 @@ public class ConferenceApi {
             // Use default displayName and teeShirtSize
             String email = user.getEmail();
             profile = new Profile(user.getUserId(),
-                    extractDefaultDisplayNameFromEmail(email), email, TeeShirtSize.NOT_SPECIFIED);
+                    extractDefaultDisplayNameFromEmail(email), email);
         }
         return profile;
     }

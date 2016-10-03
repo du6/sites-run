@@ -8,8 +8,6 @@ import com.googlecode.objectify.annotation.Id;
 import java.util.ArrayList;
 import java.util.List;
 
-import main.java.run.sites.form.ProfileForm.TeeShirtSize;
-
 
 // TODO indicate that this class is an Entity
 @Entity
@@ -18,7 +16,6 @@ import main.java.run.sites.form.ProfileForm.TeeShirtSize;
 public class Profile {
     String displayName;
     String mainEmail;
-    TeeShirtSize teeShirtSize;
 
     // TODO indicate that the userId is to be used in the Entity's key
     @Id String userId;
@@ -33,14 +30,12 @@ public class Profile {
      * @param userId The user id, obtained from the email
      * @param displayName Any string user wants us to display him/her on this system.
      * @param mainEmail User's main e-mail address.
-     * @param teeShirtSize The User's tee shirt size
      *
      */
-    public Profile (String userId, String displayName, String mainEmail, TeeShirtSize teeShirtSize) {
+    public Profile (String userId, String displayName, String mainEmail) {
         this.userId = userId;
         this.displayName = displayName;
         this.mainEmail = mainEmail;
-        this.teeShirtSize = teeShirtSize;
     }
 
     public String getDisplayName() {
@@ -49,10 +44,6 @@ public class Profile {
 
     public String getMainEmail() {
         return mainEmail;
-    }
-
-    public TeeShirtSize getTeeShirtSize() {
-        return teeShirtSize;
     }
 
     public String getUserId() {
@@ -73,17 +64,13 @@ public class Profile {
     private Profile() {}
 
     /**
-     * Update the Profile with the given displayName and teeShirtSize
+     * Update the Profile with the given displayName
      *
      * @param displayName
-     * @param teeShirtSize
      */
-    public void update(String displayName, TeeShirtSize teeShirtSize) {
+    public void update(String displayName) {
         if (displayName != null) {
             this.displayName = displayName;
-        }
-        if (teeShirtSize != null) {
-            this.teeShirtSize = teeShirtSize;
         }
     }
 
