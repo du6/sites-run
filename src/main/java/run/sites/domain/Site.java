@@ -10,6 +10,7 @@ import com.googlecode.objectify.annotation.Id;
 import com.googlecode.objectify.annotation.Index;
 import com.googlecode.objectify.annotation.Parent;
 
+import java.net.MalformedURLException;
 import java.net.URL;
 
 import main.java.run.sites.form.SiteForm;
@@ -89,8 +90,8 @@ public class Site {
     return description;
   }
 
-  public URL getSource() {
-    return source;
+  public String getSource() {
+    return source.toString();
   }
 
   @ApiResourceProperty(ignored = AnnotationBoolean.TRUE)
@@ -103,8 +104,7 @@ public class Site {
     return Key.create(profileKey, Site.class, id).getString();
   }
 
-  @ApiResourceProperty(ignored = AnnotationBoolean.TRUE)
-  public String gewOwnerUserId() {
+  public String getOwnerUserId() {
     return ownerUserId;
   }
 
@@ -129,9 +129,13 @@ public class Site {
    * @param siteForm contains form data sent from the client.
    */
   public void updateWithSiteForm(SiteForm siteForm) {
-    this.name = siteForm.getName();
-    this.source = siteForm.getSource();
-    this.description = siteForm.getDescription();
+    try {
+      this.name = siteForm.getName();
+      this.source = new URL(siteForm.getSource());
+      this.description = siteForm.getDescription();
+    } catch (MalformedURLException e) {
+      this.source = null;
+    }
   }
 
   @Override

@@ -4,8 +4,8 @@ import com.googlecode.objectify.Objectify;
 import com.googlecode.objectify.ObjectifyFactory;
 import com.googlecode.objectify.ObjectifyService;
 
-import main.java.run.sites.domain.Conference;
 import main.java.run.sites.domain.Profile;
+import main.java.run.sites.domain.Site;
 
 /**
  * Custom Objectify Service that this application should use.
@@ -15,7 +15,7 @@ public class OfyService {
      * This static block ensure the entity registration.
      */
     static {
-        factory().register(Conference.class);
+        factory().register(Site.class);
         factory().register(Profile.class);
     }
 

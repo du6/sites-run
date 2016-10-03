@@ -3,7 +3,7 @@ package main.java.run.sites;
 import com.google.api.server.spi.Constant;
 
 /**
- * Contains the client IDs and scopes for allowed clients consuming the conference API.
+ * Contains the client IDs and scopes for allowed clients consuming the sites run API.
  */
 public class Constants {
     public static final String WEB_CLIENT_ID = "949964552538-v4so8dnqrjrt7d8t8fpr497t60qqa8sh.apps.googleusercontent.com";

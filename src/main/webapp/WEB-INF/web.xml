@@ -14,7 +14,7 @@
         <servlet-class>com.google.api.server.spi.SystemServiceServlet</servlet-class>
         <init-param>
             <param-name>services</param-name>
-            <param-value>main.java.run.sites.spi.ConferenceApi</param-value>
+            <param-value>main.java.run.sites.spi.SitesRunApi</param-value>
         </init-param>
     </servlet>
     <servlet-mapping>
@@ -41,15 +41,7 @@
             <transport-guarantee>CONFIDENTIAL</transport-guarantee>
         </user-data-constraint>
     </security-constraint>
-    
-    <servlet>
-       <servlet-name>SendConfirmationEmailServlet</servlet-name>
-       <servlet-class>main.java.run.sites.servlet.SendConfirmationEmailServlet</servlet-class>
-   </servlet>
-   <servlet-mapping>
-       <servlet-name>SendConfirmationEmailServlet</servlet-name>
-       <url-pattern>/tasks/send_confirmation_email</url-pattern>
-   </servlet-mapping>
+
    <security-constraint>
        <web-resource-collection>
            <web-resource-name>tasks</web-resource-name>

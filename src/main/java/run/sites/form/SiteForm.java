@@ -17,7 +17,7 @@ public class SiteForm {
   private URL source;
 
   /**
-   * The description of the conference.
+   * The description of the site.
    */
   private String description;
 
@@ -43,7 +43,7 @@ public class SiteForm {
     return description;
   }
 
-  public URL getSource() {
-    return source;
+  public String getSource() {
+    return source.toString();
   }
 }
