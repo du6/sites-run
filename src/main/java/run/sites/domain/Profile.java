@@ -1,13 +1,14 @@
-package com.google.devrel.training.conference.domain;
+package main.java.run.sites.domain;
+
+import com.google.common.collect.ImmutableList;
+import com.googlecode.objectify.annotation.Cache;
+import com.googlecode.objectify.annotation.Entity;
+import com.googlecode.objectify.annotation.Id;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import com.google.common.collect.ImmutableList;
-import com.google.devrel.training.conference.form.ProfileForm.TeeShirtSize;
-import com.googlecode.objectify.annotation.Cache;
-import com.googlecode.objectify.annotation.Entity;
-import com.googlecode.objectify.annotation.Id;
+import main.java.run.sites.form.ProfileForm.TeeShirtSize;
 
 
 // TODO indicate that this class is an Entity

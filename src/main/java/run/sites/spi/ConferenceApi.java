@@ -1,7 +1,7 @@
-package com.google.devrel.training.conference.spi;
+package main.java.run.sites.spi;
 
-import static com.google.devrel.training.conference.service.OfyService.factory;
-import static com.google.devrel.training.conference.service.OfyService.ofy;
+import static main.java.run.sites.service.OfyService.factory;
+import static main.java.run.sites.service.OfyService.ofy;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -22,14 +22,14 @@ import com.google.appengine.api.taskqueue.Queue;
 import com.google.appengine.api.taskqueue.QueueFactory;
 import com.google.appengine.api.taskqueue.TaskOptions;
 import com.google.appengine.api.users.User;
-import com.google.devrel.training.conference.Constants;
-import com.google.devrel.training.conference.domain.Announcement;
-import com.google.devrel.training.conference.domain.Conference;
-import com.google.devrel.training.conference.domain.Profile;
-import com.google.devrel.training.conference.form.ConferenceForm;
-import com.google.devrel.training.conference.form.ConferenceQueryForm;
-import com.google.devrel.training.conference.form.ProfileForm;
-import com.google.devrel.training.conference.form.ProfileForm.TeeShirtSize;
+import main.java.run.sites.Constants;
+import main.java.run.sites.domain.Announcement;
+import main.java.run.sites.domain.Conference;
+import main.java.run.sites.domain.Profile;
+import main.java.run.sites.form.ConferenceForm;
+import main.java.run.sites.form.ConferenceQueryForm;
+import main.java.run.sites.form.ProfileForm;
+import main.java.run.sites.form.ProfileForm.TeeShirtSize;
 import com.googlecode.objectify.Key;
 import com.googlecode.objectify.Work;
 import com.googlecode.objectify.cmd.Query;

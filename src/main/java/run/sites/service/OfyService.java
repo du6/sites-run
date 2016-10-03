@@ -1,10 +1,11 @@
-package com.google.devrel.training.conference.service;
+package main.java.run.sites.service;
 
-import com.google.devrel.training.conference.domain.Conference;
-import com.google.devrel.training.conference.domain.Profile;
 import com.googlecode.objectify.Objectify;
 import com.googlecode.objectify.ObjectifyFactory;
 import com.googlecode.objectify.ObjectifyService;
+
+import main.java.run.sites.domain.Conference;
+import main.java.run.sites.domain.Profile;
 
 /**
  * Custom Objectify Service that this application should use.

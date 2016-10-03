@@ -1,4 +1,4 @@
-package com.google.devrel.training.conference.domain;
+package main.java.run.sites.domain;
 
 /**
  * A simple wrapper for announcement message.

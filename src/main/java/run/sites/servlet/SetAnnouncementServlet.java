@@ -1,12 +1,8 @@
-package com.google.devrel.training.conference.servlet;
-
-import static com.google.devrel.training.conference.service.OfyService.ofy;
+package main.java.run.sites.servlet;
 
 import com.google.appengine.api.memcache.MemcacheService;
 import com.google.appengine.api.memcache.MemcacheServiceFactory;
 import com.google.common.base.Joiner;
-import com.google.devrel.training.conference.Constants;
-import com.google.devrel.training.conference.domain.Conference;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -16,6 +12,11 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import main.java.run.sites.Constants;
+import main.java.run.sites.domain.Conference;
+
+import static main.java.run.sites.service.OfyService.ofy;
 
 /**
  * A servlet for putting announcements in memcache.

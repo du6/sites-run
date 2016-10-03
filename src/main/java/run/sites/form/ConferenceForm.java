@@ -1,4 +1,4 @@
-package com.google.devrel.training.conference.form;
+package main.java.run.sites.form;
 
 import com.google.common.collect.ImmutableList;
 
