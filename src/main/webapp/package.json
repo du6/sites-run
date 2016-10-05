@@ -1,0 +1,12 @@
+{
+  "jspm": {
+    "dependencies": {
+      "coffee": "github:forresto/system-coffee@^0.1.2",
+      "gapi": "npm:gapi@^0.0.3"
+    },
+    "devDependencies": {
+      "traceur": "github:jmcriffey/bower-traceur@0.0.93",
+      "traceur-runtime": "github:jmcriffey/bower-traceur-runtime@0.0.93"
+    }
+  }
+}
