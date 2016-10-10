@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { MaterialModule } from '@angular/material';
 import { SitesRunAppComponent } from './app.component';
-import { SitesRunToolbarComponent } from './toolbar.component';
 export var SitesRunAppModule = (function () {
     function SitesRunAppModule() {
     }
@@ -12,8 +11,8 @@ export var SitesRunAppModule = (function () {
                         BrowserModule,
                         MaterialModule.forRoot(),
                     ],
-                    declarations: [SitesRunAppComponent, SitesRunToolbarComponent],
-                    bootstrap: [SitesRunAppComponent, SitesRunToolbarComponent],
+                    declarations: [SitesRunAppComponent],
+                    bootstrap: [SitesRunAppComponent],
                 },] },
     ];
     /** @nocollapse */

@@ -1,1 +1,10 @@
-<sites-run-toolbar></sites-run-toolbar>
+<md-toolbar color="primary">
+  <span>Sites Run</span>
+  <span class="fill-in-space"></span>
+  <span [hidden]="isSignedIn">
+    <button md-button id="signin2-button" >Sign In with Google</button>
+  </span>
+  <span *ngIf="isSignedIn">
+    <button md-button (click)="signOut()">Sign Out</button>
+  </span>
+</md-toolbar>

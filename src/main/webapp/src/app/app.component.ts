@@ -15,6 +15,8 @@ export class SitesRunAppComponent {
 
   signInButtonId: string = 'signin2-button';
 
+  isSignedIn: boolean = false;
+
   constructor() {
   }
 
@@ -33,9 +35,15 @@ export class SitesRunAppComponent {
     this.auth2.attachClickHandler(element, {},
         (googleUser) => {
           this.userDisplayName = googleUser.getBasicProfile().getName();
-          console.log(this);
+          this.isSignedIn = true;
         }, (error) => {
           alert(JSON.stringify(error, undefined, 2));
         });
+  }
+
+  signOut() {
+    this.auth2.signOut().then(() => {
+      this.isSignedIn = false;
+    });
   }
 }

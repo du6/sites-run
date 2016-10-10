@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 export var SitesRunAppComponent = (function () {
     function SitesRunAppComponent() {
         this.signInButtonId = 'signin2-button';
+        this.isSignedIn = false;
     }
     SitesRunAppComponent.prototype.ngAfterViewInit = function () {
         var _this = this;
@@ -18,9 +19,15 @@ export var SitesRunAppComponent = (function () {
         var _this = this;
         this.auth2.attachClickHandler(element, {}, function (googleUser) {
             _this.userDisplayName = googleUser.getBasicProfile().getName();
-            console.log(_this);
+            _this.isSignedIn = true;
         }, function (error) {
             alert(JSON.stringify(error, undefined, 2));
+        });
+    };
+    SitesRunAppComponent.prototype.signOut = function () {
+        var _this = this;
+        this.auth2.signOut().then(function () {
+            _this.isSignedIn = false;
         });
     };
     SitesRunAppComponent.decorators = [

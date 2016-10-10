@@ -11,13 +11,19 @@ var __extends = (this && this.__extends) || function (d, b) {
 import * as import1 from '@angular/core/src/linker/view';
 import * as import2 from '@angular/core/src/linker/element';
 import * as import3 from '../../app/app.component';
+import * as import4 from '@angular/core/src/linker/view_utils';
 import * as import6 from '@angular/core/src/linker/view_type';
 import * as import7 from '@angular/core/src/change_detection/change_detection';
 import * as import8 from '@angular/core/src/metadata/view';
 import * as import9 from '@angular/core/src/linker/component_factory';
 import * as import10 from './app.component.css.shim';
-import * as import11 from '../../app/toolbar.component';
-import * as import12 from './toolbar.component.ngfactory';
+import * as import11 from '@angular/material/toolbar/toolbar';
+import * as import12 from '@angular/material/button/button';
+import * as import13 from '@angular/common/src/directives/ng_if';
+import * as import14 from '../node_modules/@angular/material/toolbar/toolbar.ngfactory';
+import * as import15 from '@angular/core/src/linker/element_ref';
+import * as import16 from '../node_modules/@angular/material/button/button.ngfactory';
+import * as import17 from '@angular/core/src/linker/template_ref';
 var renderType_SitesRunAppComponent_Host = null;
 var _View_SitesRunAppComponent_Host0 = (function (_super) {
     __extends(_View_SitesRunAppComponent_Host0, _super);
@@ -67,20 +73,140 @@ var _View_SitesRunAppComponent0 = (function (_super) {
     }
     _View_SitesRunAppComponent0.prototype.createInternal = function (rootSelector) {
         var parentRenderNode = this.renderer.createViewRoot(this.declarationAppElement.nativeElement);
-        this._el_0 = this.renderer.createElement(parentRenderNode, 'sites-run-toolbar', null);
+        this._el_0 = this.renderer.createElement(parentRenderNode, 'md-toolbar', null);
+        this.renderer.setElementAttribute(this._el_0, 'color', 'primary');
         this._appEl_0 = new import2.AppElement(0, null, this, this._el_0);
-        var compView_0 = import12.viewFactory_SitesRunToolbarComponent0(this.viewUtils, this.injector(0), this._appEl_0);
-        this._SitesRunToolbarComponent_0_4 = new import11.SitesRunToolbarComponent();
-        this._appEl_0.initComponent(this._SitesRunToolbarComponent_0_4, [], compView_0);
-        compView_0.create(this._SitesRunToolbarComponent_0_4, [], null);
-        this.init([], [this._el_0], [], []);
+        var compView_0 = import14.viewFactory_MdToolbar0(this.viewUtils, this.injector(0), this._appEl_0);
+        this._MdToolbar_0_4 = new import11.MdToolbar(new import15.ElementRef(this._el_0), this.renderer);
+        this._appEl_0.initComponent(this._MdToolbar_0_4, [], compView_0);
+        this._text_1 = this.renderer.createText(null, '\n  ', null);
+        this._el_2 = this.renderer.createElement(null, 'span', null);
+        this._text_3 = this.renderer.createText(this._el_2, 'Sites Run', null);
+        this._text_4 = this.renderer.createText(null, '\n  ', null);
+        this._el_5 = this.renderer.createElement(null, 'span', null);
+        this.renderer.setElementAttribute(this._el_5, 'class', 'fill-in-space');
+        this._text_6 = this.renderer.createText(null, '\n  ', null);
+        this._el_7 = this.renderer.createElement(null, 'span', null);
+        this._text_8 = this.renderer.createText(this._el_7, '\n    ', null);
+        this._el_9 = this.renderer.createElement(this._el_7, 'button', null);
+        this.renderer.setElementAttribute(this._el_9, 'id', 'signin2-button');
+        this.renderer.setElementAttribute(this._el_9, 'md-button', '');
+        this._appEl_9 = new import2.AppElement(9, 7, this, this._el_9);
+        var compView_9 = import16.viewFactory_MdButton0(this.viewUtils, this.injector(9), this._appEl_9);
+        this._MdButton_9_4 = new import12.MdButton(new import15.ElementRef(this._el_9), this.renderer);
+        this._appEl_9.initComponent(this._MdButton_9_4, [], compView_9);
+        this._text_10 = this.renderer.createText(null, 'Sign In with Google', null);
+        compView_9.create(this._MdButton_9_4, [[].concat([this._text_10])], null);
+        this._text_11 = this.renderer.createText(this._el_7, '\n  ', null);
+        this._text_12 = this.renderer.createText(null, '\n  ', null);
+        this._anchor_13 = this.renderer.createTemplateAnchor(null, null);
+        this._appEl_13 = new import2.AppElement(13, 0, this, this._anchor_13);
+        this._TemplateRef_13_5 = new import17.TemplateRef_(this._appEl_13, viewFactory_SitesRunAppComponent1);
+        this._NgIf_13_6 = new import13.NgIf(this._appEl_13.vcRef, this._TemplateRef_13_5);
+        this._text_14 = this.renderer.createText(null, '\n', null);
+        compView_0.create(this._MdToolbar_0_4, [
+            [].concat([
+                this._text_1,
+                this._el_2,
+                this._text_4,
+                this._el_5,
+                this._text_6,
+                this._el_7,
+                this._text_12,
+                this._appEl_13,
+                this._text_14
+            ]),
+            []
+        ], null);
+        this._expr_0 = import7.UNINITIALIZED;
+        this._expr_1 = import7.UNINITIALIZED;
+        var disposable_0 = this.renderer.listen(this._el_9, 'mousedown', this.eventHandler(this._handle_mousedown_9_0.bind(this)));
+        var disposable_1 = this.renderer.listen(this._el_9, 'focus', this.eventHandler(this._handle_focus_9_1.bind(this)));
+        var disposable_2 = this.renderer.listen(this._el_9, 'blur', this.eventHandler(this._handle_blur_9_2.bind(this)));
+        this._expr_5 = import7.UNINITIALIZED;
+        this._expr_6 = import7.UNINITIALIZED;
+        this.init([], [
+            this._el_0,
+            this._text_1,
+            this._el_2,
+            this._text_3,
+            this._text_4,
+            this._el_5,
+            this._text_6,
+            this._el_7,
+            this._text_8,
+            this._el_9,
+            this._text_10,
+            this._text_11,
+            this._text_12,
+            this._anchor_13,
+            this._text_14
+        ], [
+            disposable_0,
+            disposable_1,
+            disposable_2
+        ], []);
         return null;
     };
     _View_SitesRunAppComponent0.prototype.injectorGetInternal = function (token, requestNodeIndex, notFoundResult) {
-        if (((token === import11.SitesRunToolbarComponent) && (0 === requestNodeIndex))) {
-            return this._SitesRunToolbarComponent_0_4;
+        if (((token === import12.MdButton) && ((9 <= requestNodeIndex) && (requestNodeIndex <= 10)))) {
+            return this._MdButton_9_4;
+        }
+        if (((token === import17.TemplateRef) && (13 === requestNodeIndex))) {
+            return this._TemplateRef_13_5;
+        }
+        if (((token === import13.NgIf) && (13 === requestNodeIndex))) {
+            return this._NgIf_13_6;
+        }
+        if (((token === import11.MdToolbar) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 14)))) {
+            return this._MdToolbar_0_4;
         }
         return notFoundResult;
+    };
+    _View_SitesRunAppComponent0.prototype.detectChangesInternal = function (throwOnChange) {
+        var changed = true;
+        changed = false;
+        var currVal_0 = 'primary';
+        if (import4.checkBinding(throwOnChange, this._expr_0, currVal_0)) {
+            this._MdToolbar_0_4.color = currVal_0;
+            changed = true;
+            this._expr_0 = currVal_0;
+        }
+        if (changed) {
+            this._appEl_0.componentView.markAsCheckOnce();
+        }
+        var currVal_6 = this.context.isSignedIn;
+        if (import4.checkBinding(throwOnChange, this._expr_6, currVal_6)) {
+            this._NgIf_13_6.ngIf = currVal_6;
+            this._expr_6 = currVal_6;
+        }
+        this.detectContentChildrenChanges(throwOnChange);
+        var currVal_1 = this.context.isSignedIn;
+        if (import4.checkBinding(throwOnChange, this._expr_1, currVal_1)) {
+            this.renderer.setElementProperty(this._el_7, 'hidden', currVal_1);
+            this._expr_1 = currVal_1;
+        }
+        var currVal_5 = this._MdButton_9_4._isKeyboardFocused;
+        if (import4.checkBinding(throwOnChange, this._expr_5, currVal_5)) {
+            this.renderer.setElementClass(this._el_9, 'md-button-focus', currVal_5);
+            this._expr_5 = currVal_5;
+        }
+        this.detectViewChildrenChanges(throwOnChange);
+    };
+    _View_SitesRunAppComponent0.prototype._handle_mousedown_9_0 = function ($event) {
+        this._appEl_9.componentView.markPathToRootAsCheckOnce();
+        var pd_0 = (this._MdButton_9_4._setMousedown() !== false);
+        return (true && pd_0);
+    };
+    _View_SitesRunAppComponent0.prototype._handle_focus_9_1 = function ($event) {
+        this._appEl_9.componentView.markPathToRootAsCheckOnce();
+        var pd_0 = (this._MdButton_9_4._setKeyboardFocus() !== false);
+        return (true && pd_0);
+    };
+    _View_SitesRunAppComponent0.prototype._handle_blur_9_2 = function ($event) {
+        this._appEl_9.componentView.markPathToRootAsCheckOnce();
+        var pd_0 = (this._MdButton_9_4._removeKeyboardFocus() !== false);
+        return (true && pd_0);
     };
     return _View_SitesRunAppComponent0;
 }(import1.AppView));
@@ -89,5 +215,75 @@ export function viewFactory_SitesRunAppComponent0(viewUtils, parentInjector, dec
         (renderType_SitesRunAppComponent = viewUtils.createRenderComponentType('', 0, import8.ViewEncapsulation.Emulated, styles_SitesRunAppComponent, {}));
     }
     return new _View_SitesRunAppComponent0(viewUtils, parentInjector, declarationEl);
+}
+var _View_SitesRunAppComponent1 = (function (_super) {
+    __extends(_View_SitesRunAppComponent1, _super);
+    function _View_SitesRunAppComponent1(viewUtils, parentInjector, declarationEl) {
+        _super.call(this, _View_SitesRunAppComponent1, renderType_SitesRunAppComponent, import6.ViewType.EMBEDDED, viewUtils, parentInjector, declarationEl, import7.ChangeDetectorStatus.CheckAlways);
+    }
+    _View_SitesRunAppComponent1.prototype.createInternal = function (rootSelector) {
+        this._el_0 = this.renderer.createElement(null, 'button', null);
+        this.renderer.setElementAttribute(this._el_0, 'md-button', '');
+        this._appEl_0 = new import2.AppElement(0, null, this, this._el_0);
+        var compView_0 = import16.viewFactory_MdButton0(this.viewUtils, this.injector(0), this._appEl_0);
+        this._MdButton_0_4 = new import12.MdButton(new import15.ElementRef(this._el_0), this.renderer);
+        this._appEl_0.initComponent(this._MdButton_0_4, [], compView_0);
+        this._text_1 = this.renderer.createText(null, 'Sign Out', null);
+        compView_0.create(this._MdButton_0_4, [[].concat([this._text_1])], null);
+        var disposable_0 = this.renderer.listen(this._el_0, 'click', this.eventHandler(this._handle_click_0_0.bind(this)));
+        var disposable_1 = this.renderer.listen(this._el_0, 'mousedown', this.eventHandler(this._handle_mousedown_0_1.bind(this)));
+        var disposable_2 = this.renderer.listen(this._el_0, 'focus', this.eventHandler(this._handle_focus_0_2.bind(this)));
+        var disposable_3 = this.renderer.listen(this._el_0, 'blur', this.eventHandler(this._handle_blur_0_3.bind(this)));
+        this._expr_4 = import7.UNINITIALIZED;
+        this.init([].concat([this._el_0]), [
+            this._el_0,
+            this._text_1
+        ], [
+            disposable_0,
+            disposable_1,
+            disposable_2,
+            disposable_3
+        ], []);
+        return null;
+    };
+    _View_SitesRunAppComponent1.prototype.injectorGetInternal = function (token, requestNodeIndex, notFoundResult) {
+        if (((token === import12.MdButton) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 1)))) {
+            return this._MdButton_0_4;
+        }
+        return notFoundResult;
+    };
+    _View_SitesRunAppComponent1.prototype.detectChangesInternal = function (throwOnChange) {
+        this.detectContentChildrenChanges(throwOnChange);
+        var currVal_4 = this._MdButton_0_4._isKeyboardFocused;
+        if (import4.checkBinding(throwOnChange, this._expr_4, currVal_4)) {
+            this.renderer.setElementClass(this._el_0, 'md-button-focus', currVal_4);
+            this._expr_4 = currVal_4;
+        }
+        this.detectViewChildrenChanges(throwOnChange);
+    };
+    _View_SitesRunAppComponent1.prototype._handle_click_0_0 = function ($event) {
+        this.markPathToRootAsCheckOnce();
+        var pd_0 = (this.parent.context.signOut() !== false);
+        return (true && pd_0);
+    };
+    _View_SitesRunAppComponent1.prototype._handle_mousedown_0_1 = function ($event) {
+        this._appEl_0.componentView.markPathToRootAsCheckOnce();
+        var pd_0 = (this._MdButton_0_4._setMousedown() !== false);
+        return (true && pd_0);
+    };
+    _View_SitesRunAppComponent1.prototype._handle_focus_0_2 = function ($event) {
+        this._appEl_0.componentView.markPathToRootAsCheckOnce();
+        var pd_0 = (this._MdButton_0_4._setKeyboardFocus() !== false);
+        return (true && pd_0);
+    };
+    _View_SitesRunAppComponent1.prototype._handle_blur_0_3 = function ($event) {
+        this._appEl_0.componentView.markPathToRootAsCheckOnce();
+        var pd_0 = (this._MdButton_0_4._removeKeyboardFocus() !== false);
+        return (true && pd_0);
+    };
+    return _View_SitesRunAppComponent1;
+}(import1.AppView));
+function viewFactory_SitesRunAppComponent1(viewUtils, parentInjector, declarationEl) {
+    return new _View_SitesRunAppComponent1(viewUtils, parentInjector, declarationEl);
 }
 //# sourceMappingURL=/Users/yuelindu/Projects/SitesRun/src/main/webapp/src/aot/app/app.component.ngfactory.js.map
