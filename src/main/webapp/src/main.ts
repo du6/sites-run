@@ -2,6 +2,7 @@ import './polyfills.ts';
 import {enableProdMode} from '@angular/core';
 import {environment} from './environments/environment';
 
+declare var gapi: {client: any};
 
 if (environment.production) {
   enableProdMode();
@@ -22,7 +23,7 @@ if (environment.production) {
  */
 
 import {platformBrowser} from '@angular/platform-browser';
-import {MaterialAppModuleNgFactory} from './aot/app/app.module.ngfactory';
+import {SitesRunAppModuleNgFactory} from './aot/app/app.module.ngfactory';
 
 gapi.client.load('sitesRunApi', 'v1', null, '//' + window.location.host + '/_ah/api');
-platformBrowser().bootstrapModuleFactory(MaterialAppModuleNgFactory);
+platformBrowser().bootstrapModuleFactory(SitesRunAppModuleNgFactory);

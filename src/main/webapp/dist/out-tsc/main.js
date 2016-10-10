@@ -5,7 +5,7 @@ if (environment.production) {
     enableProdMode();
 }
 import { platformBrowser } from '@angular/platform-browser';
-import { MaterialAppModuleNgFactory } from './aot/app/app.module.ngfactory';
+import { SitesRunAppModuleNgFactory } from './aot/app/app.module.ngfactory';
 gapi.client.load('sitesRunApi', 'v1', null, '//' + window.location.host + '/_ah/api');
-platformBrowser().bootstrapModuleFactory(MaterialAppModuleNgFactory);
+platformBrowser().bootstrapModuleFactory(SitesRunAppModuleNgFactory);
 //# sourceMappingURL=/Users/yuelindu/Projects/SitesRun/src/main/webapp/src/main.js.map

@@ -1,20 +1,9 @@
 import { Component } from '@angular/core';
-export var Material2AppAppComponent = (function () {
-    function Material2AppAppComponent() {
-        var _this = this;
-        this.isDarkTheme = false;
-        this.foods = [
-            { name: 'Pizza', rating: 'Excellent' },
-            { name: 'Burritos', rating: 'Great' },
-            { name: 'French fries', rating: 'Pretty good' },
-        ];
-        this.progress = 0;
-        // Update the value for the progress-bar on an interval.
-        setInterval(function () {
-            _this.progress = (_this.progress + Math.floor(Math.random() * 4) + 1) % 100;
-        }, 200);
+export var SitesRunAppComponent = (function () {
+    function SitesRunAppComponent() {
+        this.signInButtonId = 'signin2-button';
     }
-    Material2AppAppComponent.prototype.ngAfterViewInit = function () {
+    SitesRunAppComponent.prototype.ngAfterViewInit = function () {
         var _this = this;
         gapi.load('auth2', function () {
             // Retrieve the singleton for the GoogleAuth library and set up the client.
@@ -22,10 +11,10 @@ export var Material2AppAppComponent = (function () {
                 client_id: '949964552538-v4so8dnqrjrt7d8t8fpr497t60qqa8sh.apps.googleusercontent.com',
                 cookiepolicy: 'single_host_origin',
             });
-            _this.attachSignin(document.getElementById('signin2-button'));
+            _this.attachSignin(document.getElementById(_this.signInButtonId));
         });
     };
-    Material2AppAppComponent.prototype.attachSignin = function (element) {
+    SitesRunAppComponent.prototype.attachSignin = function (element) {
         var _this = this;
         this.auth2.attachClickHandler(element, {}, function (googleUser) {
             _this.userDisplayName = googleUser.getBasicProfile().getName();
@@ -34,15 +23,15 @@ export var Material2AppAppComponent = (function () {
             alert(JSON.stringify(error, undefined, 2));
         });
     };
-    Material2AppAppComponent.decorators = [
+    SitesRunAppComponent.decorators = [
         { type: Component, args: [{
-                    selector: 'material2-app-app',
+                    selector: 'sites-run-app',
                     templateUrl: 'app.component.html',
                     styleUrls: ['app.component.css'],
                 },] },
     ];
     /** @nocollapse */
-    Material2AppAppComponent.ctorParameters = [];
-    return Material2AppAppComponent;
+    SitesRunAppComponent.ctorParameters = [];
+    return SitesRunAppComponent;
 }());
 //# sourceMappingURL=/Users/yuelindu/Projects/SitesRun/src/main/webapp/src/app/app.component.js.map

@@ -74,35 +74,40 @@ import * as import63 from '../node_modules/@angular/material/snack-bar/snack-bar
 import * as import64 from '../node_modules/@angular/material/snack-bar/simple-snack-bar.ngfactory';
 import * as import65 from '../node_modules/@angular/material/tooltip/tooltip.ngfactory';
 import * as import66 from './app.component.ngfactory';
-import * as import67 from '@angular/core/src/application_tokens';
-import * as import68 from '@angular/platform-browser/src/dom/events/dom_events';
-import * as import69 from '@angular/platform-browser/src/dom/events/key_events';
-import * as import70 from '@angular/platform-browser/src/dom/events/hammer_gestures';
-import * as import71 from '@angular/core/src/zone/ng_zone';
-import * as import72 from '@angular/platform-browser/src/dom/debug/ng_probe';
-import * as import73 from '@angular/core/src/console';
-import * as import74 from '@angular/core/src/i18n/tokens';
-import * as import75 from '@angular/core/src/error_handler';
-import * as import76 from '@angular/platform-browser/src/dom/dom_tokens';
-import * as import77 from '@angular/platform-browser/src/dom/animation_driver';
-import * as import78 from '@angular/core/src/render/api';
-import * as import79 from '@angular/core/src/security';
-import * as import80 from '@angular/core/src/change_detection/differs/iterable_differs';
-import * as import81 from '@angular/core/src/change_detection/differs/keyvalue_differs';
-import * as import82 from '@angular/http/src/interfaces';
-import * as import83 from '@angular/http/src/http';
-var MaterialAppModuleInjector = (function (_super) {
-    __extends(MaterialAppModuleInjector, _super);
-    function MaterialAppModuleInjector(parent) {
+import * as import67 from './toolbar.component.ngfactory';
+import * as import68 from '@angular/core/src/application_tokens';
+import * as import69 from '@angular/platform-browser/src/dom/events/dom_events';
+import * as import70 from '@angular/platform-browser/src/dom/events/key_events';
+import * as import71 from '@angular/platform-browser/src/dom/events/hammer_gestures';
+import * as import72 from '@angular/core/src/zone/ng_zone';
+import * as import73 from '@angular/platform-browser/src/dom/debug/ng_probe';
+import * as import74 from '@angular/core/src/console';
+import * as import75 from '@angular/core/src/i18n/tokens';
+import * as import76 from '@angular/core/src/error_handler';
+import * as import77 from '@angular/platform-browser/src/dom/dom_tokens';
+import * as import78 from '@angular/platform-browser/src/dom/animation_driver';
+import * as import79 from '@angular/core/src/render/api';
+import * as import80 from '@angular/core/src/security';
+import * as import81 from '@angular/core/src/change_detection/differs/iterable_differs';
+import * as import82 from '@angular/core/src/change_detection/differs/keyvalue_differs';
+import * as import83 from '@angular/http/src/interfaces';
+import * as import84 from '@angular/http/src/http';
+var SitesRunAppModuleInjector = (function (_super) {
+    __extends(SitesRunAppModuleInjector, _super);
+    function SitesRunAppModuleInjector(parent) {
         _super.call(this, parent, [
             import62.MdDialogContainerNgFactory,
             import63.MdSnackBarContainerNgFactory,
             import64.SimpleSnackBarNgFactory,
             import65.TooltipComponentNgFactory,
-            import66.Material2AppAppComponentNgFactory
-        ], [import66.Material2AppAppComponentNgFactory]);
+            import66.SitesRunAppComponentNgFactory,
+            import67.SitesRunToolbarComponentNgFactory
+        ], [
+            import66.SitesRunAppComponentNgFactory,
+            import67.SitesRunToolbarComponentNgFactory
+        ]);
     }
-    Object.defineProperty(MaterialAppModuleInjector.prototype, "_LOCALE_ID_35", {
+    Object.defineProperty(SitesRunAppModuleInjector.prototype, "_LOCALE_ID_35", {
         get: function () {
             if ((this.__LOCALE_ID_35 == null)) {
                 (this.__LOCALE_ID_35 = 'en-US');
@@ -112,7 +117,7 @@ var MaterialAppModuleInjector = (function (_super) {
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(MaterialAppModuleInjector.prototype, "_NgLocalization_36", {
+    Object.defineProperty(SitesRunAppModuleInjector.prototype, "_NgLocalization_36", {
         get: function () {
             if ((this.__NgLocalization_36 == null)) {
                 (this.__NgLocalization_36 = new import36.NgLocaleLocalization(this._LOCALE_ID_35));
@@ -122,7 +127,7 @@ var MaterialAppModuleInjector = (function (_super) {
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(MaterialAppModuleInjector.prototype, "_ApplicationRef_41", {
+    Object.defineProperty(SitesRunAppModuleInjector.prototype, "_ApplicationRef_41", {
         get: function () {
             if ((this.__ApplicationRef_41 == null)) {
                 (this.__ApplicationRef_41 = this._ApplicationRef__40);
@@ -132,7 +137,7 @@ var MaterialAppModuleInjector = (function (_super) {
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(MaterialAppModuleInjector.prototype, "_Compiler_42", {
+    Object.defineProperty(SitesRunAppModuleInjector.prototype, "_Compiler_42", {
         get: function () {
             if ((this.__Compiler_42 == null)) {
                 (this.__Compiler_42 = new import40.Compiler());
@@ -142,17 +147,17 @@ var MaterialAppModuleInjector = (function (_super) {
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(MaterialAppModuleInjector.prototype, "_APP_ID_43", {
+    Object.defineProperty(SitesRunAppModuleInjector.prototype, "_APP_ID_43", {
         get: function () {
             if ((this.__APP_ID_43 == null)) {
-                (this.__APP_ID_43 = import67._appIdRandomProviderFactory());
+                (this.__APP_ID_43 = import68._appIdRandomProviderFactory());
             }
             return this.__APP_ID_43;
         },
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(MaterialAppModuleInjector.prototype, "_DOCUMENT_44", {
+    Object.defineProperty(SitesRunAppModuleInjector.prototype, "_DOCUMENT_44", {
         get: function () {
             if ((this.__DOCUMENT_44 == null)) {
                 (this.__DOCUMENT_44 = import4._document());
@@ -162,7 +167,7 @@ var MaterialAppModuleInjector = (function (_super) {
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(MaterialAppModuleInjector.prototype, "_HAMMER_GESTURE_CONFIG_45", {
+    Object.defineProperty(SitesRunAppModuleInjector.prototype, "_HAMMER_GESTURE_CONFIG_45", {
         get: function () {
             if ((this.__HAMMER_GESTURE_CONFIG_45 == null)) {
                 (this.__HAMMER_GESTURE_CONFIG_45 = new import41.MdGestureConfig());
@@ -172,13 +177,13 @@ var MaterialAppModuleInjector = (function (_super) {
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(MaterialAppModuleInjector.prototype, "_EVENT_MANAGER_PLUGINS_46", {
+    Object.defineProperty(SitesRunAppModuleInjector.prototype, "_EVENT_MANAGER_PLUGINS_46", {
         get: function () {
             if ((this.__EVENT_MANAGER_PLUGINS_46 == null)) {
                 (this.__EVENT_MANAGER_PLUGINS_46 = [
-                    new import68.DomEventsPlugin(),
-                    new import69.KeyEventsPlugin(),
-                    new import70.HammerGesturesPlugin(this._HAMMER_GESTURE_CONFIG_45)
+                    new import69.DomEventsPlugin(),
+                    new import70.KeyEventsPlugin(),
+                    new import71.HammerGesturesPlugin(this._HAMMER_GESTURE_CONFIG_45)
                 ]);
             }
             return this.__EVENT_MANAGER_PLUGINS_46;
@@ -186,17 +191,17 @@ var MaterialAppModuleInjector = (function (_super) {
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(MaterialAppModuleInjector.prototype, "_EventManager_47", {
+    Object.defineProperty(SitesRunAppModuleInjector.prototype, "_EventManager_47", {
         get: function () {
             if ((this.__EventManager_47 == null)) {
-                (this.__EventManager_47 = new import42.EventManager(this._EVENT_MANAGER_PLUGINS_46, this.parent.get(import71.NgZone)));
+                (this.__EventManager_47 = new import42.EventManager(this._EVENT_MANAGER_PLUGINS_46, this.parent.get(import72.NgZone)));
             }
             return this.__EventManager_47;
         },
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(MaterialAppModuleInjector.prototype, "_DomSharedStylesHost_48", {
+    Object.defineProperty(SitesRunAppModuleInjector.prototype, "_DomSharedStylesHost_48", {
         get: function () {
             if ((this.__DomSharedStylesHost_48 == null)) {
                 (this.__DomSharedStylesHost_48 = new import43.DomSharedStylesHost(this._DOCUMENT_44));
@@ -206,7 +211,7 @@ var MaterialAppModuleInjector = (function (_super) {
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(MaterialAppModuleInjector.prototype, "_AnimationDriver_49", {
+    Object.defineProperty(SitesRunAppModuleInjector.prototype, "_AnimationDriver_49", {
         get: function () {
             if ((this.__AnimationDriver_49 == null)) {
                 (this.__AnimationDriver_49 = import4._resolveDefaultAnimationDriver());
@@ -216,7 +221,7 @@ var MaterialAppModuleInjector = (function (_super) {
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(MaterialAppModuleInjector.prototype, "_DomRootRenderer_50", {
+    Object.defineProperty(SitesRunAppModuleInjector.prototype, "_DomRootRenderer_50", {
         get: function () {
             if ((this.__DomRootRenderer_50 == null)) {
                 (this.__DomRootRenderer_50 = new import44.DomRootRenderer_(this._DOCUMENT_44, this._EventManager_47, this._DomSharedStylesHost_48, this._AnimationDriver_49));
@@ -226,17 +231,17 @@ var MaterialAppModuleInjector = (function (_super) {
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(MaterialAppModuleInjector.prototype, "_RootRenderer_51", {
+    Object.defineProperty(SitesRunAppModuleInjector.prototype, "_RootRenderer_51", {
         get: function () {
             if ((this.__RootRenderer_51 == null)) {
-                (this.__RootRenderer_51 = import72._createConditionalRootRenderer(this._DomRootRenderer_50, this.parent.get(import72.NgProbeToken, null)));
+                (this.__RootRenderer_51 = import73._createConditionalRootRenderer(this._DomRootRenderer_50, this.parent.get(import73.NgProbeToken, null)));
             }
             return this.__RootRenderer_51;
         },
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(MaterialAppModuleInjector.prototype, "_DomSanitizer_52", {
+    Object.defineProperty(SitesRunAppModuleInjector.prototype, "_DomSanitizer_52", {
         get: function () {
             if ((this.__DomSanitizer_52 == null)) {
                 (this.__DomSanitizer_52 = new import45.DomSanitizerImpl());
@@ -246,7 +251,7 @@ var MaterialAppModuleInjector = (function (_super) {
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(MaterialAppModuleInjector.prototype, "_Sanitizer_53", {
+    Object.defineProperty(SitesRunAppModuleInjector.prototype, "_Sanitizer_53", {
         get: function () {
             if ((this.__Sanitizer_53 == null)) {
                 (this.__Sanitizer_53 = this._DomSanitizer_52);
@@ -256,7 +261,7 @@ var MaterialAppModuleInjector = (function (_super) {
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(MaterialAppModuleInjector.prototype, "_ViewUtils_54", {
+    Object.defineProperty(SitesRunAppModuleInjector.prototype, "_ViewUtils_54", {
         get: function () {
             if ((this.__ViewUtils_54 == null)) {
                 (this.__ViewUtils_54 = new import46.ViewUtils(this._RootRenderer_51, this._APP_ID_43, this._Sanitizer_53));
@@ -266,7 +271,7 @@ var MaterialAppModuleInjector = (function (_super) {
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(MaterialAppModuleInjector.prototype, "_IterableDiffers_55", {
+    Object.defineProperty(SitesRunAppModuleInjector.prototype, "_IterableDiffers_55", {
         get: function () {
             if ((this.__IterableDiffers_55 == null)) {
                 (this.__IterableDiffers_55 = import3._iterableDiffersFactory());
@@ -276,7 +281,7 @@ var MaterialAppModuleInjector = (function (_super) {
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(MaterialAppModuleInjector.prototype, "_KeyValueDiffers_56", {
+    Object.defineProperty(SitesRunAppModuleInjector.prototype, "_KeyValueDiffers_56", {
         get: function () {
             if ((this.__KeyValueDiffers_56 == null)) {
                 (this.__KeyValueDiffers_56 = import3._keyValueDiffersFactory());
@@ -286,7 +291,7 @@ var MaterialAppModuleInjector = (function (_super) {
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(MaterialAppModuleInjector.prototype, "_SharedStylesHost_57", {
+    Object.defineProperty(SitesRunAppModuleInjector.prototype, "_SharedStylesHost_57", {
         get: function () {
             if ((this.__SharedStylesHost_57 == null)) {
                 (this.__SharedStylesHost_57 = this._DomSharedStylesHost_48);
@@ -296,7 +301,7 @@ var MaterialAppModuleInjector = (function (_super) {
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(MaterialAppModuleInjector.prototype, "_Title_58", {
+    Object.defineProperty(SitesRunAppModuleInjector.prototype, "_Title_58", {
         get: function () {
             if ((this.__Title_58 == null)) {
                 (this.__Title_58 = new import47.Title());
@@ -306,7 +311,7 @@ var MaterialAppModuleInjector = (function (_super) {
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(MaterialAppModuleInjector.prototype, "_RadioControlRegistry_59", {
+    Object.defineProperty(SitesRunAppModuleInjector.prototype, "_RadioControlRegistry_59", {
         get: function () {
             if ((this.__RadioControlRegistry_59 == null)) {
                 (this.__RadioControlRegistry_59 = new import48.RadioControlRegistry());
@@ -316,7 +321,7 @@ var MaterialAppModuleInjector = (function (_super) {
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(MaterialAppModuleInjector.prototype, "_BrowserXhr_60", {
+    Object.defineProperty(SitesRunAppModuleInjector.prototype, "_BrowserXhr_60", {
         get: function () {
             if ((this.__BrowserXhr_60 == null)) {
                 (this.__BrowserXhr_60 = new import49.BrowserXhr());
@@ -326,7 +331,7 @@ var MaterialAppModuleInjector = (function (_super) {
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(MaterialAppModuleInjector.prototype, "_ResponseOptions_61", {
+    Object.defineProperty(SitesRunAppModuleInjector.prototype, "_ResponseOptions_61", {
         get: function () {
             if ((this.__ResponseOptions_61 == null)) {
                 (this.__ResponseOptions_61 = new import50.BaseResponseOptions());
@@ -336,7 +341,7 @@ var MaterialAppModuleInjector = (function (_super) {
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(MaterialAppModuleInjector.prototype, "_XSRFStrategy_62", {
+    Object.defineProperty(SitesRunAppModuleInjector.prototype, "_XSRFStrategy_62", {
         get: function () {
             if ((this.__XSRFStrategy_62 == null)) {
                 (this.__XSRFStrategy_62 = import27._createDefaultCookieXSRFStrategy());
@@ -346,7 +351,7 @@ var MaterialAppModuleInjector = (function (_super) {
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(MaterialAppModuleInjector.prototype, "_XHRBackend_63", {
+    Object.defineProperty(SitesRunAppModuleInjector.prototype, "_XHRBackend_63", {
         get: function () {
             if ((this.__XHRBackend_63 == null)) {
                 (this.__XHRBackend_63 = new import51.XHRBackend(this._BrowserXhr_60, this._ResponseOptions_61, this._XSRFStrategy_62));
@@ -356,7 +361,7 @@ var MaterialAppModuleInjector = (function (_super) {
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(MaterialAppModuleInjector.prototype, "_RequestOptions_64", {
+    Object.defineProperty(SitesRunAppModuleInjector.prototype, "_RequestOptions_64", {
         get: function () {
             if ((this.__RequestOptions_64 == null)) {
                 (this.__RequestOptions_64 = new import52.BaseRequestOptions());
@@ -366,7 +371,7 @@ var MaterialAppModuleInjector = (function (_super) {
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(MaterialAppModuleInjector.prototype, "_Http_65", {
+    Object.defineProperty(SitesRunAppModuleInjector.prototype, "_Http_65", {
         get: function () {
             if ((this.__Http_65 == null)) {
                 (this.__Http_65 = import27.httpFactory(this._XHRBackend_63, this._RequestOptions_64));
@@ -376,7 +381,7 @@ var MaterialAppModuleInjector = (function (_super) {
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(MaterialAppModuleInjector.prototype, "_MdLiveAnnouncer_66", {
+    Object.defineProperty(SitesRunAppModuleInjector.prototype, "_MdLiveAnnouncer_66", {
         get: function () {
             if ((this.__MdLiveAnnouncer_66 == null)) {
                 (this.__MdLiveAnnouncer_66 = new import53.MdLiveAnnouncer(this.parent.get(import53.LIVE_ANNOUNCER_ELEMENT_TOKEN, null)));
@@ -386,7 +391,7 @@ var MaterialAppModuleInjector = (function (_super) {
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(MaterialAppModuleInjector.prototype, "_InteractivityChecker_67", {
+    Object.defineProperty(SitesRunAppModuleInjector.prototype, "_InteractivityChecker_67", {
         get: function () {
             if ((this.__InteractivityChecker_67 == null)) {
                 (this.__InteractivityChecker_67 = new import54.InteractivityChecker());
@@ -396,7 +401,7 @@ var MaterialAppModuleInjector = (function (_super) {
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(MaterialAppModuleInjector.prototype, "_MdUniqueSelectionDispatcher_68", {
+    Object.defineProperty(SitesRunAppModuleInjector.prototype, "_MdUniqueSelectionDispatcher_68", {
         get: function () {
             if ((this.__MdUniqueSelectionDispatcher_68 == null)) {
                 (this.__MdUniqueSelectionDispatcher_68 = new import55.MdUniqueSelectionDispatcher());
@@ -406,7 +411,7 @@ var MaterialAppModuleInjector = (function (_super) {
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(MaterialAppModuleInjector.prototype, "_OverlayContainer_69", {
+    Object.defineProperty(SitesRunAppModuleInjector.prototype, "_OverlayContainer_69", {
         get: function () {
             if ((this.__OverlayContainer_69 == null)) {
                 (this.__OverlayContainer_69 = new import56.OverlayContainer());
@@ -416,7 +421,7 @@ var MaterialAppModuleInjector = (function (_super) {
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(MaterialAppModuleInjector.prototype, "_ViewportRuler_70", {
+    Object.defineProperty(SitesRunAppModuleInjector.prototype, "_ViewportRuler_70", {
         get: function () {
             if ((this.__ViewportRuler_70 == null)) {
                 (this.__ViewportRuler_70 = new import57.ViewportRuler());
@@ -426,7 +431,7 @@ var MaterialAppModuleInjector = (function (_super) {
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(MaterialAppModuleInjector.prototype, "_OverlayPositionBuilder_71", {
+    Object.defineProperty(SitesRunAppModuleInjector.prototype, "_OverlayPositionBuilder_71", {
         get: function () {
             if ((this.__OverlayPositionBuilder_71 == null)) {
                 (this.__OverlayPositionBuilder_71 = new import58.OverlayPositionBuilder(this._ViewportRuler_70));
@@ -436,7 +441,7 @@ var MaterialAppModuleInjector = (function (_super) {
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(MaterialAppModuleInjector.prototype, "_Overlay_72", {
+    Object.defineProperty(SitesRunAppModuleInjector.prototype, "_Overlay_72", {
         get: function () {
             if ((this.__Overlay_72 == null)) {
                 (this.__Overlay_72 = new import59.Overlay(this._OverlayContainer_69, this, this._OverlayPositionBuilder_71));
@@ -446,7 +451,7 @@ var MaterialAppModuleInjector = (function (_super) {
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(MaterialAppModuleInjector.prototype, "_MdDialog_73", {
+    Object.defineProperty(SitesRunAppModuleInjector.prototype, "_MdDialog_73", {
         get: function () {
             if ((this.__MdDialog_73 == null)) {
                 (this.__MdDialog_73 = new import26.MdDialog(this._Overlay_72, this));
@@ -456,7 +461,7 @@ var MaterialAppModuleInjector = (function (_super) {
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(MaterialAppModuleInjector.prototype, "_MdIconRegistry_74", {
+    Object.defineProperty(SitesRunAppModuleInjector.prototype, "_MdIconRegistry_74", {
         get: function () {
             if ((this.__MdIconRegistry_74 == null)) {
                 (this.__MdIconRegistry_74 = new import60.MdIconRegistry(this._Http_65));
@@ -466,7 +471,7 @@ var MaterialAppModuleInjector = (function (_super) {
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(MaterialAppModuleInjector.prototype, "_MdSnackBar_75", {
+    Object.defineProperty(SitesRunAppModuleInjector.prototype, "_MdSnackBar_75", {
         get: function () {
             if ((this.__MdSnackBar_75 == null)) {
                 (this.__MdSnackBar_75 = new import33.MdSnackBar(this._Overlay_72, this._MdLiveAnnouncer_66));
@@ -476,7 +481,7 @@ var MaterialAppModuleInjector = (function (_super) {
         enumerable: true,
         configurable: true
     });
-    MaterialAppModuleInjector.prototype.createInternal = function () {
+    SitesRunAppModuleInjector.prototype.createInternal = function () {
         this._CommonModule_0 = new import2.CommonModule();
         this._ApplicationModule_1 = new import3.ApplicationModule();
         this._BrowserModule_2 = new import4.BrowserModule(this.parent.get(import4.BrowserModule, null));
@@ -511,14 +516,14 @@ var MaterialAppModuleInjector = (function (_super) {
         this._MdSnackBarModule_31 = new import33.MdSnackBarModule();
         this._MdTooltipModule_32 = new import34.MdTooltipModule();
         this._MaterialRootModule_33 = new import35.MaterialRootModule();
-        this._MaterialAppModule_34 = new import1.MaterialAppModule();
+        this._SitesRunAppModule_34 = new import1.SitesRunAppModule();
         this._ErrorHandler_37 = import4.errorHandler();
         this._ApplicationInitStatus_38 = new import37.ApplicationInitStatus(this.parent.get(import37.APP_INITIALIZER, null));
-        this._Testability_39 = new import38.Testability(this.parent.get(import71.NgZone));
-        this._ApplicationRef__40 = new import39.ApplicationRef_(this.parent.get(import71.NgZone), this.parent.get(import73.Console), this, this._ErrorHandler_37, this, this._ApplicationInitStatus_38, this.parent.get(import38.TestabilityRegistry, null), this._Testability_39);
-        return this._MaterialAppModule_34;
+        this._Testability_39 = new import38.Testability(this.parent.get(import72.NgZone));
+        this._ApplicationRef__40 = new import39.ApplicationRef_(this.parent.get(import72.NgZone), this.parent.get(import74.Console), this, this._ErrorHandler_37, this, this._ApplicationInitStatus_38, this.parent.get(import38.TestabilityRegistry, null), this._Testability_39);
+        return this._SitesRunAppModule_34;
     };
-    MaterialAppModuleInjector.prototype.getInternal = function (token, notFoundResult) {
+    SitesRunAppModuleInjector.prototype.getInternal = function (token, notFoundResult) {
         if ((token === import2.CommonModule)) {
             return this._CommonModule_0;
         }
@@ -621,16 +626,16 @@ var MaterialAppModuleInjector = (function (_super) {
         if ((token === import35.MaterialRootModule)) {
             return this._MaterialRootModule_33;
         }
-        if ((token === import1.MaterialAppModule)) {
-            return this._MaterialAppModule_34;
+        if ((token === import1.SitesRunAppModule)) {
+            return this._SitesRunAppModule_34;
         }
-        if ((token === import74.LOCALE_ID)) {
+        if ((token === import75.LOCALE_ID)) {
             return this._LOCALE_ID_35;
         }
         if ((token === import36.NgLocalization)) {
             return this._NgLocalization_36;
         }
-        if ((token === import75.ErrorHandler)) {
+        if ((token === import76.ErrorHandler)) {
             return this._ErrorHandler_37;
         }
         if ((token === import37.ApplicationInitStatus)) {
@@ -648,13 +653,13 @@ var MaterialAppModuleInjector = (function (_super) {
         if ((token === import40.Compiler)) {
             return this._Compiler_42;
         }
-        if ((token === import67.APP_ID)) {
+        if ((token === import68.APP_ID)) {
             return this._APP_ID_43;
         }
-        if ((token === import76.DOCUMENT)) {
+        if ((token === import77.DOCUMENT)) {
             return this._DOCUMENT_44;
         }
-        if ((token === import70.HAMMER_GESTURE_CONFIG)) {
+        if ((token === import71.HAMMER_GESTURE_CONFIG)) {
             return this._HAMMER_GESTURE_CONFIG_45;
         }
         if ((token === import42.EVENT_MANAGER_PLUGINS)) {
@@ -666,28 +671,28 @@ var MaterialAppModuleInjector = (function (_super) {
         if ((token === import43.DomSharedStylesHost)) {
             return this._DomSharedStylesHost_48;
         }
-        if ((token === import77.AnimationDriver)) {
+        if ((token === import78.AnimationDriver)) {
             return this._AnimationDriver_49;
         }
         if ((token === import44.DomRootRenderer)) {
             return this._DomRootRenderer_50;
         }
-        if ((token === import78.RootRenderer)) {
+        if ((token === import79.RootRenderer)) {
             return this._RootRenderer_51;
         }
         if ((token === import45.DomSanitizer)) {
             return this._DomSanitizer_52;
         }
-        if ((token === import79.Sanitizer)) {
+        if ((token === import80.Sanitizer)) {
             return this._Sanitizer_53;
         }
         if ((token === import46.ViewUtils)) {
             return this._ViewUtils_54;
         }
-        if ((token === import80.IterableDiffers)) {
+        if ((token === import81.IterableDiffers)) {
             return this._IterableDiffers_55;
         }
-        if ((token === import81.KeyValueDiffers)) {
+        if ((token === import82.KeyValueDiffers)) {
             return this._KeyValueDiffers_56;
         }
         if ((token === import43.SharedStylesHost)) {
@@ -705,7 +710,7 @@ var MaterialAppModuleInjector = (function (_super) {
         if ((token === import50.ResponseOptions)) {
             return this._ResponseOptions_61;
         }
-        if ((token === import82.XSRFStrategy)) {
+        if ((token === import83.XSRFStrategy)) {
             return this._XSRFStrategy_62;
         }
         if ((token === import51.XHRBackend)) {
@@ -714,7 +719,7 @@ var MaterialAppModuleInjector = (function (_super) {
         if ((token === import52.RequestOptions)) {
             return this._RequestOptions_64;
         }
-        if ((token === import83.Http)) {
+        if ((token === import84.Http)) {
             return this._Http_65;
         }
         if ((token === import53.MdLiveAnnouncer)) {
@@ -749,10 +754,10 @@ var MaterialAppModuleInjector = (function (_super) {
         }
         return notFoundResult;
     };
-    MaterialAppModuleInjector.prototype.destroyInternal = function () {
+    SitesRunAppModuleInjector.prototype.destroyInternal = function () {
         this._ApplicationRef__40.ngOnDestroy();
     };
-    return MaterialAppModuleInjector;
+    return SitesRunAppModuleInjector;
 }(import0.NgModuleInjector));
-export var MaterialAppModuleNgFactory = new import0.NgModuleFactory(MaterialAppModuleInjector, import1.MaterialAppModule);
+export var SitesRunAppModuleNgFactory = new import0.NgModuleFactory(SitesRunAppModuleInjector, import1.SitesRunAppModule);
 //# sourceMappingURL=/Users/yuelindu/Projects/SitesRun/src/main/webapp/src/aot/app/app.module.ngfactory.js.map

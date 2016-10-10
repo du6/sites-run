@@ -71,24 +71,25 @@ import * as import63 from '../node_modules/@angular/material/snack-bar/snack-bar
 import * as import64 from '../node_modules/@angular/material/snack-bar/simple-snack-bar.ngfactory';
 import * as import65 from '../node_modules/@angular/material/tooltip/tooltip.ngfactory';
 import * as import66 from './app.component.ngfactory';
-import * as import67 from '@angular/core/src/application_tokens';
-import * as import68 from '@angular/platform-browser/src/dom/events/dom_events';
-import * as import69 from '@angular/platform-browser/src/dom/events/key_events';
-import * as import70 from '@angular/platform-browser/src/dom/events/hammer_gestures';
-import * as import71 from '@angular/core/src/zone/ng_zone';
-import * as import72 from '@angular/platform-browser/src/dom/debug/ng_probe';
-import * as import73 from '@angular/core/src/console';
-import * as import74 from '@angular/core/src/i18n/tokens';
-import * as import75 from '@angular/core/src/error_handler';
-import * as import76 from '@angular/platform-browser/src/dom/dom_tokens';
-import * as import77 from '@angular/platform-browser/src/dom/animation_driver';
-import * as import78 from '@angular/core/src/render/api';
-import * as import79 from '@angular/core/src/security';
-import * as import80 from '@angular/core/src/change_detection/differs/iterable_differs';
-import * as import81 from '@angular/core/src/change_detection/differs/keyvalue_differs';
-import * as import82 from '@angular/http/src/interfaces';
-import * as import83 from '@angular/http/src/http';
-class MaterialAppModuleInjector extends import0.NgModuleInjector<import1.MaterialAppModule> {
+import * as import67 from './toolbar.component.ngfactory';
+import * as import68 from '@angular/core/src/application_tokens';
+import * as import69 from '@angular/platform-browser/src/dom/events/dom_events';
+import * as import70 from '@angular/platform-browser/src/dom/events/key_events';
+import * as import71 from '@angular/platform-browser/src/dom/events/hammer_gestures';
+import * as import72 from '@angular/core/src/zone/ng_zone';
+import * as import73 from '@angular/platform-browser/src/dom/debug/ng_probe';
+import * as import74 from '@angular/core/src/console';
+import * as import75 from '@angular/core/src/i18n/tokens';
+import * as import76 from '@angular/core/src/error_handler';
+import * as import77 from '@angular/platform-browser/src/dom/dom_tokens';
+import * as import78 from '@angular/platform-browser/src/dom/animation_driver';
+import * as import79 from '@angular/core/src/render/api';
+import * as import80 from '@angular/core/src/security';
+import * as import81 from '@angular/core/src/change_detection/differs/iterable_differs';
+import * as import82 from '@angular/core/src/change_detection/differs/keyvalue_differs';
+import * as import83 from '@angular/http/src/interfaces';
+import * as import84 from '@angular/http/src/http';
+class SitesRunAppModuleInjector extends import0.NgModuleInjector<import1.SitesRunAppModule> {
   _CommonModule_0:import2.CommonModule;
   _ApplicationModule_1:import3.ApplicationModule;
   _BrowserModule_2:import4.BrowserModule;
@@ -123,7 +124,7 @@ class MaterialAppModuleInjector extends import0.NgModuleInjector<import1.Materia
   _MdSnackBarModule_31:import33.MdSnackBarModule;
   _MdTooltipModule_32:import34.MdTooltipModule;
   _MaterialRootModule_33:import35.MaterialRootModule;
-  _MaterialAppModule_34:import1.MaterialAppModule;
+  _SitesRunAppModule_34:import1.SitesRunAppModule;
   __LOCALE_ID_35:any;
   __NgLocalization_36:import36.NgLocaleLocalization;
   _ErrorHandler_37:any;
@@ -171,9 +172,14 @@ class MaterialAppModuleInjector extends import0.NgModuleInjector<import1.Materia
       import63.MdSnackBarContainerNgFactory,
       import64.SimpleSnackBarNgFactory,
       import65.TooltipComponentNgFactory,
-      import66.Material2AppAppComponentNgFactory
+      import66.SitesRunAppComponentNgFactory,
+      import67.SitesRunToolbarComponentNgFactory
     ]
-    ,[import66.Material2AppAppComponentNgFactory]);
+    ,[
+      import66.SitesRunAppComponentNgFactory,
+      import67.SitesRunToolbarComponentNgFactory
+    ]
+    );
   }
   get _LOCALE_ID_35():any {
     if ((this.__LOCALE_ID_35 == (null as any))) { (this.__LOCALE_ID_35 = 'en-US'); }
@@ -192,7 +198,7 @@ class MaterialAppModuleInjector extends import0.NgModuleInjector<import1.Materia
     return this.__Compiler_42;
   }
   get _APP_ID_43():any {
-    if ((this.__APP_ID_43 == (null as any))) { (this.__APP_ID_43 = import67._appIdRandomProviderFactory()); }
+    if ((this.__APP_ID_43 == (null as any))) { (this.__APP_ID_43 = import68._appIdRandomProviderFactory()); }
     return this.__APP_ID_43;
   }
   get _DOCUMENT_44():any {
@@ -205,15 +211,15 @@ class MaterialAppModuleInjector extends import0.NgModuleInjector<import1.Materia
   }
   get _EVENT_MANAGER_PLUGINS_46():any[] {
     if ((this.__EVENT_MANAGER_PLUGINS_46 == (null as any))) { (this.__EVENT_MANAGER_PLUGINS_46 = [
-      new import68.DomEventsPlugin(),
-      new import69.KeyEventsPlugin(),
-      new import70.HammerGesturesPlugin(this._HAMMER_GESTURE_CONFIG_45)
+      new import69.DomEventsPlugin(),
+      new import70.KeyEventsPlugin(),
+      new import71.HammerGesturesPlugin(this._HAMMER_GESTURE_CONFIG_45)
     ]
     ); }
     return this.__EVENT_MANAGER_PLUGINS_46;
   }
   get _EventManager_47():import42.EventManager {
-    if ((this.__EventManager_47 == (null as any))) { (this.__EventManager_47 = new import42.EventManager(this._EVENT_MANAGER_PLUGINS_46,this.parent.get(import71.NgZone))); }
+    if ((this.__EventManager_47 == (null as any))) { (this.__EventManager_47 = new import42.EventManager(this._EVENT_MANAGER_PLUGINS_46,this.parent.get(import72.NgZone))); }
     return this.__EventManager_47;
   }
   get _DomSharedStylesHost_48():import43.DomSharedStylesHost {
@@ -229,7 +235,7 @@ class MaterialAppModuleInjector extends import0.NgModuleInjector<import1.Materia
     return this.__DomRootRenderer_50;
   }
   get _RootRenderer_51():any {
-    if ((this.__RootRenderer_51 == (null as any))) { (this.__RootRenderer_51 = import72._createConditionalRootRenderer(this._DomRootRenderer_50,this.parent.get(import72.NgProbeToken,(null as any)))); }
+    if ((this.__RootRenderer_51 == (null as any))) { (this.__RootRenderer_51 = import73._createConditionalRootRenderer(this._DomRootRenderer_50,this.parent.get(import73.NgProbeToken,(null as any)))); }
     return this.__RootRenderer_51;
   }
   get _DomSanitizer_52():import45.DomSanitizerImpl {
@@ -328,7 +334,7 @@ class MaterialAppModuleInjector extends import0.NgModuleInjector<import1.Materia
     if ((this.__MdSnackBar_75 == (null as any))) { (this.__MdSnackBar_75 = new import33.MdSnackBar(this._Overlay_72,this._MdLiveAnnouncer_66)); }
     return this.__MdSnackBar_75;
   }
-  createInternal():import1.MaterialAppModule {
+  createInternal():import1.SitesRunAppModule {
     this._CommonModule_0 = new import2.CommonModule();
     this._ApplicationModule_1 = new import3.ApplicationModule();
     this._BrowserModule_2 = new import4.BrowserModule(this.parent.get(import4.BrowserModule,(null as any)));
@@ -363,12 +369,12 @@ class MaterialAppModuleInjector extends import0.NgModuleInjector<import1.Materia
     this._MdSnackBarModule_31 = new import33.MdSnackBarModule();
     this._MdTooltipModule_32 = new import34.MdTooltipModule();
     this._MaterialRootModule_33 = new import35.MaterialRootModule();
-    this._MaterialAppModule_34 = new import1.MaterialAppModule();
+    this._SitesRunAppModule_34 = new import1.SitesRunAppModule();
     this._ErrorHandler_37 = import4.errorHandler();
     this._ApplicationInitStatus_38 = new import37.ApplicationInitStatus(this.parent.get(import37.APP_INITIALIZER,(null as any)));
-    this._Testability_39 = new import38.Testability(this.parent.get(import71.NgZone));
-    this._ApplicationRef__40 = new import39.ApplicationRef_(this.parent.get(import71.NgZone),this.parent.get(import73.Console),this,this._ErrorHandler_37,this,this._ApplicationInitStatus_38,this.parent.get(import38.TestabilityRegistry,(null as any)),this._Testability_39);
-    return this._MaterialAppModule_34;
+    this._Testability_39 = new import38.Testability(this.parent.get(import72.NgZone));
+    this._ApplicationRef__40 = new import39.ApplicationRef_(this.parent.get(import72.NgZone),this.parent.get(import74.Console),this,this._ErrorHandler_37,this,this._ApplicationInitStatus_38,this.parent.get(import38.TestabilityRegistry,(null as any)),this._Testability_39);
+    return this._SitesRunAppModule_34;
   }
   getInternal(token:any,notFoundResult:any):any {
     if ((token === import2.CommonModule)) { return this._CommonModule_0; }
@@ -405,38 +411,38 @@ class MaterialAppModuleInjector extends import0.NgModuleInjector<import1.Materia
     if ((token === import33.MdSnackBarModule)) { return this._MdSnackBarModule_31; }
     if ((token === import34.MdTooltipModule)) { return this._MdTooltipModule_32; }
     if ((token === import35.MaterialRootModule)) { return this._MaterialRootModule_33; }
-    if ((token === import1.MaterialAppModule)) { return this._MaterialAppModule_34; }
-    if ((token === import74.LOCALE_ID)) { return this._LOCALE_ID_35; }
+    if ((token === import1.SitesRunAppModule)) { return this._SitesRunAppModule_34; }
+    if ((token === import75.LOCALE_ID)) { return this._LOCALE_ID_35; }
     if ((token === import36.NgLocalization)) { return this._NgLocalization_36; }
-    if ((token === import75.ErrorHandler)) { return this._ErrorHandler_37; }
+    if ((token === import76.ErrorHandler)) { return this._ErrorHandler_37; }
     if ((token === import37.ApplicationInitStatus)) { return this._ApplicationInitStatus_38; }
     if ((token === import38.Testability)) { return this._Testability_39; }
     if ((token === import39.ApplicationRef_)) { return this._ApplicationRef__40; }
     if ((token === import39.ApplicationRef)) { return this._ApplicationRef_41; }
     if ((token === import40.Compiler)) { return this._Compiler_42; }
-    if ((token === import67.APP_ID)) { return this._APP_ID_43; }
-    if ((token === import76.DOCUMENT)) { return this._DOCUMENT_44; }
-    if ((token === import70.HAMMER_GESTURE_CONFIG)) { return this._HAMMER_GESTURE_CONFIG_45; }
+    if ((token === import68.APP_ID)) { return this._APP_ID_43; }
+    if ((token === import77.DOCUMENT)) { return this._DOCUMENT_44; }
+    if ((token === import71.HAMMER_GESTURE_CONFIG)) { return this._HAMMER_GESTURE_CONFIG_45; }
     if ((token === import42.EVENT_MANAGER_PLUGINS)) { return this._EVENT_MANAGER_PLUGINS_46; }
     if ((token === import42.EventManager)) { return this._EventManager_47; }
     if ((token === import43.DomSharedStylesHost)) { return this._DomSharedStylesHost_48; }
-    if ((token === import77.AnimationDriver)) { return this._AnimationDriver_49; }
+    if ((token === import78.AnimationDriver)) { return this._AnimationDriver_49; }
     if ((token === import44.DomRootRenderer)) { return this._DomRootRenderer_50; }
-    if ((token === import78.RootRenderer)) { return this._RootRenderer_51; }
+    if ((token === import79.RootRenderer)) { return this._RootRenderer_51; }
     if ((token === import45.DomSanitizer)) { return this._DomSanitizer_52; }
-    if ((token === import79.Sanitizer)) { return this._Sanitizer_53; }
+    if ((token === import80.Sanitizer)) { return this._Sanitizer_53; }
     if ((token === import46.ViewUtils)) { return this._ViewUtils_54; }
-    if ((token === import80.IterableDiffers)) { return this._IterableDiffers_55; }
-    if ((token === import81.KeyValueDiffers)) { return this._KeyValueDiffers_56; }
+    if ((token === import81.IterableDiffers)) { return this._IterableDiffers_55; }
+    if ((token === import82.KeyValueDiffers)) { return this._KeyValueDiffers_56; }
     if ((token === import43.SharedStylesHost)) { return this._SharedStylesHost_57; }
     if ((token === import47.Title)) { return this._Title_58; }
     if ((token === import48.RadioControlRegistry)) { return this._RadioControlRegistry_59; }
     if ((token === import49.BrowserXhr)) { return this._BrowserXhr_60; }
     if ((token === import50.ResponseOptions)) { return this._ResponseOptions_61; }
-    if ((token === import82.XSRFStrategy)) { return this._XSRFStrategy_62; }
+    if ((token === import83.XSRFStrategy)) { return this._XSRFStrategy_62; }
     if ((token === import51.XHRBackend)) { return this._XHRBackend_63; }
     if ((token === import52.RequestOptions)) { return this._RequestOptions_64; }
-    if ((token === import83.Http)) { return this._Http_65; }
+    if ((token === import84.Http)) { return this._Http_65; }
     if ((token === import53.MdLiveAnnouncer)) { return this._MdLiveAnnouncer_66; }
     if ((token === import54.InteractivityChecker)) { return this._InteractivityChecker_67; }
     if ((token === import55.MdUniqueSelectionDispatcher)) { return this._MdUniqueSelectionDispatcher_68; }
@@ -453,4 +459,4 @@ class MaterialAppModuleInjector extends import0.NgModuleInjector<import1.Materia
     this._ApplicationRef__40.ngOnDestroy();
   }
 }
-export const MaterialAppModuleNgFactory:import0.NgModuleFactory<import1.MaterialAppModule> = new import0.NgModuleFactory(MaterialAppModuleInjector,import1.MaterialAppModule);
+export const SitesRunAppModuleNgFactory:import0.NgModuleFactory<import1.SitesRunAppModule> = new import0.NgModuleFactory(SitesRunAppModuleInjector,import1.SitesRunAppModule);

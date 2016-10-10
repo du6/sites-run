@@ -1,14 +1,16 @@
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {MaterialModule} from '@angular/material';
-import {Material2AppAppComponent} from './app.component';
+
+import {SitesRunAppComponent} from './app.component';
+import {SitesRunToolbarComponent} from './toolbar.component';
 
 @NgModule({
   imports: [
     BrowserModule,
     MaterialModule.forRoot(),
   ],
-  declarations: [Material2AppAppComponent],
-  bootstrap: [Material2AppAppComponent],
+  declarations: [SitesRunAppComponent, SitesRunToolbarComponent],
+  bootstrap: [SitesRunAppComponent, SitesRunToolbarComponent],
 })
-export class MaterialAppModule { }
+export class SitesRunAppModule { }
