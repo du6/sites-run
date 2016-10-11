@@ -6,5 +6,7 @@ if (environment.production) {
 }
 import { platformBrowser } from '@angular/platform-browser';
 import { SitesRunAppModuleNgFactory } from './aot/app/app.module.ngfactory';
-platformBrowser().bootstrapModuleFactory(SitesRunAppModuleNgFactory);
+gapi.load('auth2', function () {
+    platformBrowser().bootstrapModuleFactory(SitesRunAppModuleNgFactory);
+});
 //# sourceMappingURL=/Users/yuelindu/Projects/SitesRun/src/main/webapp/src/main.js.map

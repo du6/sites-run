@@ -2,6 +2,8 @@ import './polyfills.ts';
 import {enableProdMode} from '@angular/core';
 import {environment} from './environments/environment';
 
+declare var gapi: any;
+
 if (environment.production) {
   enableProdMode();
 }
@@ -20,7 +22,17 @@ if (environment.production) {
  * First run `./node_modules/.bin/ngc -p ./src/`
  */
 
-import {platformBrowser} from '@angular/platform-browser';
-import {SitesRunAppModuleNgFactory} from './aot/app/app.module.ngfactory';
+//import {platformBrowser} from '@angular/platform-browser';
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+//import {SitesRunAppModuleNgFactory} from './aot/app/app.module.ngfactory';
+import {SitesRunAppModule} from './app/app.module';
 
-platformBrowser().bootstrapModuleFactory(SitesRunAppModuleNgFactory);
+gapi.load('auth2', () => {
+  gapi.auth2.init({
+    client_id: '949964552538-v4so8dnqrjrt7d8t8fpr497t60qqa8sh.apps.googleusercontent.com',
+    cookiepolicy: 'single_host_origin',
+  }).then(() => {
+    //platformBrowser().bootstrapModuleFactory(SitesRunAppModuleNgFactory);
+    platformBrowserDynamic().bootstrapModule(SitesRunAppModule);
+  });
+});
