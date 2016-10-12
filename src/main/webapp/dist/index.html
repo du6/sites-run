@@ -7,13 +7,16 @@
 
   <meta name="description" content="Save web links with customized names for memorizing and sharing.">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="google-signin-scope" content="profile email">
-  <meta name="google-signin-client_id" content="949964552538-v4so8dnqrjrt7d8t8fpr497t60qqa8sh.apps.googleusercontent.com">
-  <script src="https://apis.google.com/js/client:plusone.js" type="text/javascript"></script>
+  <script>
+    function onLoadCallback() {
+      gapi.client.load('sitesRunApi', 'v1', null, '//' + window.location.host + '/_ah/api');
+    }
+  </script>
+  <script src="https://apis.google.com/js/client:plusone.js?onload=onLoadCallback" type="text/javascript"></script>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 </head>
 <body>
-  <material2-app-app>Loading...</material2-app-app>
+  <sites-run-app>Loading...</sites-run-app>
 <script type="text/javascript" src="inline.js"></script><script type="text/javascript" src="styles.bundle.js"></script><script type="text/javascript" src="main.bundle.js"></script></body>
 </html>

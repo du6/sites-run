@@ -1,16 +1,13 @@
 import { Component } from '@angular/core';
 export var SitesRunAppComponent = (function () {
     function SitesRunAppComponent() {
-        this.auth2 = gapi.auth2.init({
-            client_id: '949964552538-v4so8dnqrjrt7d8t8fpr497t60qqa8sh.apps.googleusercontent.com',
-            cookiepolicy: 'single_host_origin',
-        });
+        this.auth2 = gapi.auth2.getAuthInstance();
     }
     SitesRunAppComponent.decorators = [
         { type: Component, args: [{
                     selector: 'sites-run-app',
                     templateUrl: 'app.component.html',
-                    styleUrls: ['app.component.css'],
+                    styleUrls: ['app.component.scss'],
                 },] },
     ];
     /** @nocollapse */

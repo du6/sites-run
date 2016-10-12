@@ -5,4 +5,5 @@
     <button md-button *ngIf="!auth2.isSignedIn.get()" (click)="auth2.signIn()">Sign In with Google</button>
     <button md-button *ngIf="auth2.isSignedIn.get()" (click)="auth2.signOut()">Sign Out</button>
   </md-toolbar>
+  <router-outlet></router-outlet>
 </div>
