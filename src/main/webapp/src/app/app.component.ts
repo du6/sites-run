@@ -6,7 +6,7 @@ declare var gapi: any;
 @Component({
   selector: 'sites-run-app',
   templateUrl: 'app.component.html',
-  styleUrls: ['app.component.css'],
+  styleUrls: ['app.component.scss'],
 })
 export class SitesRunAppComponent {
   auth2: any;

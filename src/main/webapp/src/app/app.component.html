@@ -1,10 +1,8 @@
-<md-toolbar color="primary">
-  <span>Sites Run</span>
-  <span class="fill-in-space"></span>
-  <span *ngIf="!auth2.isSignedIn.get()">
-    <button md-button (click)="auth2.signIn()">Sign In with Google</button>
-  </span>
-  <span *ngIf="auth2.isSignedIn.get()">
-    <button md-button (click)="auth2.signOut()">Sign Out</button>
-  </span>
-</md-toolbar>
+<div class="sites-run-app">
+  <md-toolbar color="primary">
+    <span>Sites Run</span>
+    <span class="fill-in-space"></span>
+    <button md-button *ngIf="!auth2.isSignedIn.get()" (click)="auth2.signIn()">Sign In with Google</button>
+    <button md-button *ngIf="auth2.isSignedIn.get()" (click)="auth2.signOut()">Sign Out</button>
+  </md-toolbar>
+</div>
