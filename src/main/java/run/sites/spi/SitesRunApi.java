@@ -218,7 +218,6 @@ public class SitesRunApi {
     // Allocate Id first, in order to make the transaction idempotent.
     Key<Profile> profileKey = Key.create(Profile.class, getUserId(user));
     final Key<Site> siteKey = factory().allocateId(profileKey, Site.class);
-    final long siteId = siteKey.getId();
     final Queue queue = QueueFactory.getDefaultQueue();
     final String userId = getUserId(user);
     // Start a transaction.
@@ -227,7 +226,7 @@ public class SitesRunApi {
       public Site run() {
         // Fetch user's Profile.
         Profile profile = getProfileFromUser(user, userId);
-        Site site = new Site(siteId, userId, siteForm);
+        Site site = new Site(userId, siteForm);
         // Save Site and Profile.
         ofy().save().entities(site, profile).now();
         return site;

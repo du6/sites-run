@@ -7,7 +7,6 @@ import com.googlecode.objectify.Key;
 import com.googlecode.objectify.annotation.Cache;
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
-import com.googlecode.objectify.annotation.Index;
 import com.googlecode.objectify.annotation.Parent;
 
 import java.net.MalformedURLException;
@@ -23,19 +22,10 @@ import static main.java.run.sites.service.OfyService.ofy;
 @Entity
 @Cache
 public class Site {
-
-  /**
-   * The id for the datastore key.
-   * <p>
-   * We use automatic id assignment for entities of Site class.
-   */
-  @Id
-  private long id;
-
   /**
    * The name of the site.
    */
-  @Index
+  @Id
   private String name;
 
   /**
@@ -67,19 +57,13 @@ public class Site {
   private Site() {
   }
 
-  public Site(final long id,
-              final String ownerUserId,
+  public Site(final String ownerUserId,
               final SiteForm siteForm) {
     Preconditions.checkNotNull(siteForm.getName(), "The name is required");
     Preconditions.checkNotNull(siteForm.getSource(), "The source is required");
-    this.id = id;
     this.profileKey = Key.create(Profile.class, ownerUserId);
     this.ownerUserId = ownerUserId;
     updateWithSiteForm(siteForm);
-  }
-
-  public long getId() {
-    return id;
   }
 
   public String getName() {
@@ -101,7 +85,7 @@ public class Site {
 
   // Get a String version of the key
   public String getWebsafeKey() {
-    return Key.create(profileKey, Site.class, id).getString();
+    return Key.create(profileKey, Site.class, name).getString();
   }
 
   public String getOwnerUserId() {
@@ -140,7 +124,7 @@ public class Site {
 
   @Override
   public String toString() {
-    StringBuilder stringBuilder = new StringBuilder("Id: " + id + "\n")
+    StringBuilder stringBuilder = new StringBuilder("")
         .append("Name: " + name + "\n")
         .append("Source: " + source + "\n");
     return stringBuilder.toString();
