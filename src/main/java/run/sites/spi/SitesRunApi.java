@@ -42,6 +42,7 @@ import static main.java.run.sites.service.OfyService.ofy;
     description = "API for the Sites Run Backend application.")
 public class SitesRunApi {
 
+  private  static final String ANONYMOUS_USER_ID = "anonymous@sites.run";
   private static final Logger LOG = Logger.getLogger(SitesRunApi.class.getName());
 
   private static String extractDefaultDisplayNameFromEmail(String email) {
@@ -209,7 +210,7 @@ public class SitesRunApi {
    * @return A newly created Site Object.
    * @throws UnauthorizedException when the user is not signed in.
    */
-  @ApiMethod(name = "createSite", path = "site", httpMethod = HttpMethod.POST)
+  @ApiMethod(name = "createSite", path = "createSite", httpMethod = HttpMethod.POST)
   public Site createSite(final User user, final SiteForm siteForm)
       throws UnauthorizedException {
     if (user == null) {
@@ -227,6 +228,34 @@ public class SitesRunApi {
         // Fetch user's Profile.
         Profile profile = getProfileFromUser(user, userId);
         Site site = new Site(userId, siteForm);
+        // Save Site and Profile.
+        ofy().save().entities(site, profile).now();
+        return site;
+      }
+    });
+    return site;
+  }
+
+  /**
+   * Creates a new Site object without logging in and stores it to the datastore.
+   *
+   * @param user A user who invokes this method, null when the user is not signed in.
+   * @param siteForm A SiteForm object representing user's inputs.
+   * @return A newly created Site Object.
+   * @throws UnauthorizedException when the user is not signed in.
+   */
+  @ApiMethod(
+      name = "createSiteAnonymously",
+      path = "createSiteAnonymously",
+      httpMethod = HttpMethod.POST)
+  public Site createSiteAnonymously(final User user, final SiteForm siteForm) {
+    // Start a transaction.
+    Site site = ofy().transact(new Work<Site>() {
+      @Override
+      public Site run() {
+        // Fetch user's Profile.
+        Profile profile = getProfileFromUser(user, ANONYMOUS_USER_ID);
+        Site site = new Site(ANONYMOUS_USER_ID, siteForm);
         // Save Site and Profile.
         ofy().save().entities(site, profile).now();
         return site;
@@ -261,7 +290,6 @@ public class SitesRunApi {
     }
     final String userId = getUserId(user);
     // Update the site with the siteForm sent from the client.
-    // Need a transaction because we need to safely preserve the number of allocated seats.
     TxResult<Site> result = ofy().transact(new Work<TxResult<Site>>() {
       @Override
       public TxResult<Site> run() {
@@ -347,6 +375,25 @@ public class SitesRunApi {
     String userId = getUserId(user);
     return ofy().load().type(Site.class)
         .ancestor(Key.create(Profile.class, userId))
+        .order("name").list();
+  }
+
+  /**
+   * Returns a list of Sites that the user created anonymously.
+   * In order to receive the websafeSiteKey via the JSON params, uses a POST method.
+   *
+   * @param user An user who invokes this method, null when the user is not signed in.
+   * @return a list of Sites that the user created.
+   * @throws UnauthorizedException when the user is not signed in.
+   */
+  @ApiMethod(
+      name = "getSitesCreatedAnonymously",
+      path = "getSitesCreatedAnonymously",
+      httpMethod = HttpMethod.POST
+  )
+  public List<Site> getSitesCreatedAnonymously(final User user) throws UnauthorizedException {
+    return ofy().load().type(Site.class)
+        .ancestor(Key.create(Profile.class, ANONYMOUS_USER_ID))
         .order("name").list();
   }
 }

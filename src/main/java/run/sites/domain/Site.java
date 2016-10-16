@@ -115,10 +115,13 @@ public class Site {
   public void updateWithSiteForm(SiteForm siteForm) {
     try {
       this.name = siteForm.getName();
+      if (this.name.isEmpty() || this.name.charAt(0) == '_') {
+        throw new IllegalArgumentException("Illegal name: " + this.name);
+      }
       this.source = new URL(siteForm.getSource());
       this.description = siteForm.getDescription();
     } catch (MalformedURLException e) {
-      this.source = null;
+      throw new IllegalArgumentException("Illegal URL: " + siteForm.getSource());
     }
   }
 
