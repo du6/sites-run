@@ -4,56 +4,74 @@ import com.googlecode.objectify.annotation.Cache;
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
 
-
-// TODO indicate that this class is an Entity
 @Entity
 @Cache
-
 public class Profile {
-    String displayName;
-    String mainEmail;
+  /**
+   *  Use userId as the datastore key.
+   */
+  @Id
+  private String userId;
 
-    // TODO indicate that the userId is to be used in the Entity's key
-    @Id String userId;
+  /**
+   * Any string user wants us to display him/her on this system.
+   */
+  private String displayName;
 
-    /**
-     * Public constructor for Profile.
-     * @param userId The user id, obtained from the email
-     * @param displayName Any string user wants us to display him/her on this system.
-     * @param mainEmail User's main e-mail address.
-     *
-     */
-    public Profile (String userId, String displayName, String mainEmail) {
-        this.userId = userId;
-        this.displayName = displayName;
-        this.mainEmail = mainEmail;
-    }
+  /**
+   * User's main e-mail address.
+   */
+  private String mainEmail;
 
-    public String getDisplayName() {
-        return displayName;
-    }
+  /**
+   * Public constructor for Profile.
+   * @param userId The user id, obtained from the email
+   * @param displayName Any string user wants us to display him/her on this system.
+   * @param mainEmail User's main e-mail address.
+   *
+   */
+  public Profile (String userId, String displayName, String mainEmail) {
+      this.userId = userId;
+      this.displayName = displayName;
+      this.mainEmail = mainEmail;
+  }
 
-    public String getMainEmail() {
-        return mainEmail;
-    }
+  /**
+   * Getter for userId.
+   * @return userId.
+   */
+  public String getUserId() {
+      return userId;
+  }
 
-    public String getUserId() {
-        return userId;
-    }
+  /**
+   * Getter for displayName.
+   * @return displayName.
+   */
+  public String getDisplayName() {
+      return displayName;
+  }
 
-    /**
-     * Just making the default constructor private.
-     */
-    private Profile() {}
+  /**
+   * Getter for mainEmail.
+   * @return mainEmail.
+   */
+  public String getMainEmail() {
+      return mainEmail;
+  }
 
-    /**
-     * Update the Profile with the given displayName
-     *
-     * @param displayName
-     */
-    public void update(String displayName) {
-        if (displayName != null) {
-            this.displayName = displayName;
-        }
-    }
+  /**
+   * Update the Profile with the given displayName
+   * @param displayName
+   */
+  public void update(String displayName) {
+      if (displayName != null) {
+          this.displayName = displayName;
+      }
+  }
+
+  /**
+   * Just making the default constructor private.
+   */
+  private Profile() {}
 }
