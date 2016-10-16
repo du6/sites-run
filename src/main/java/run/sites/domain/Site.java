@@ -7,7 +7,7 @@ import com.googlecode.objectify.Key;
 import com.googlecode.objectify.annotation.Cache;
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
-import com.googlecode.objectify.annotation.Parent;
+import com.googlecode.objectify.annotation.Index;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -39,15 +39,9 @@ public class Site {
   private String description;
 
   /**
-   * Holds Profile key as the parent.
-   */
-  @Parent
-  @ApiResourceProperty(ignored = AnnotationBoolean.TRUE)
-  private Key<Profile> profileKey;
-
-  /**
    * The userId of the owner.
    */
+  @Index
   @ApiResourceProperty(ignored = AnnotationBoolean.TRUE)
   private String ownerUserId;
 
@@ -61,7 +55,6 @@ public class Site {
               final SiteForm siteForm) {
     Preconditions.checkNotNull(siteForm.getName(), "The name is required");
     Preconditions.checkNotNull(siteForm.getSource(), "The source is required");
-    this.profileKey = Key.create(Profile.class, ownerUserId);
     this.ownerUserId = ownerUserId;
     updateWithSiteForm(siteForm);
   }
@@ -78,14 +71,9 @@ public class Site {
     return source.toString();
   }
 
-  @ApiResourceProperty(ignored = AnnotationBoolean.TRUE)
-  public Key<Profile> getProfileKey() {
-    return profileKey;
-  }
-
   // Get a String version of the key
   public String getWebsafeKey() {
-    return Key.create(profileKey, Site.class, name).getString();
+    return Key.create(Site.class, name).getString();
   }
 
   public String getOwnerUserId() {
@@ -98,7 +86,7 @@ public class Site {
    * @return owner's display name. If there is no Profile, return his/her userId.
    */
   public String getOwnerDisplayName() {
-    Profile owner = ofy().load().key(getProfileKey()).now();
+    Profile owner = ofy().load().type(Profile.class).id(ownerUserId).now();
     if (owner == null) {
       return ownerUserId;
     } else {

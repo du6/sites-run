@@ -7,4 +7,13 @@
     <system-properties>
         <property name="java.util.logging.config.file" value="WEB-INF/logging.properties"/>
     </system-properties>
+
+    <resource-files>
+        <exclude path="/node_modules/**" />
+        <exclude path="/dist/**" />
+    </resource-files>
+
+    <static-files>
+        <exclude path="/node_modules/**" />
+    </static-files>
 </appengine-web-app>

@@ -7,19 +7,24 @@ import com.google.api.server.spi.response.ConflictException;
 import com.google.api.server.spi.response.ForbiddenException;
 import com.google.api.server.spi.response.NotFoundException;
 import com.google.api.server.spi.response.UnauthorizedException;
+import com.google.appengine.api.datastore.DatastoreService;
+import com.google.appengine.api.datastore.DatastoreServiceFactory;
+import com.google.appengine.api.datastore.Query.Filter;
+import com.google.appengine.api.datastore.Query.FilterOperator;
+import com.google.appengine.api.datastore.Query.FilterPredicate;
 import com.google.appengine.api.memcache.MemcacheService;
 import com.google.appengine.api.memcache.MemcacheServiceFactory;
-import com.google.appengine.api.taskqueue.Queue;
-import com.google.appengine.api.taskqueue.QueueFactory;
 import com.google.appengine.api.users.User;
 import com.googlecode.objectify.Key;
 import com.googlecode.objectify.Objectify;
 import com.googlecode.objectify.Work;
+import com.googlecode.objectify.cmd.Query;
 
 import java.util.List;
 import java.util.logging.Logger;
 
 import javax.inject.Named;
+import javax.persistence.EntityExistsException;
 
 import main.java.run.sites.Constants;
 import main.java.run.sites.domain.Announcement;
@@ -29,7 +34,6 @@ import main.java.run.sites.domain.Site;
 import main.java.run.sites.form.ProfileForm;
 import main.java.run.sites.form.SiteForm;
 
-import static main.java.run.sites.service.OfyService.factory;
 import static main.java.run.sites.service.OfyService.ofy;
 
 /**
@@ -42,6 +46,7 @@ import static main.java.run.sites.service.OfyService.ofy;
     description = "API for the Sites Run Backend application.")
 public class SitesRunApi {
 
+  private static final DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
   private  static final String ANONYMOUS_USER_ID = "anonymous@sites.run";
   private static final Logger LOG = Logger.getLogger(SitesRunApi.class.getName());
 
@@ -213,13 +218,13 @@ public class SitesRunApi {
   @ApiMethod(name = "createSite", path = "createSite", httpMethod = HttpMethod.POST)
   public Site createSite(final User user, final SiteForm siteForm)
       throws UnauthorizedException {
+    Site entity = ofy().load().type(Site.class).id(siteForm.getName()).now();
+    if (entity != null) {
+      throw new EntityExistsException("Site name already exists: " + siteForm.getName());
+    }
     if (user == null) {
       throw new UnauthorizedException("Authorization required");
     }
-    // Allocate Id first, in order to make the transaction idempotent.
-    Key<Profile> profileKey = Key.create(Profile.class, getUserId(user));
-    final Key<Site> siteKey = factory().allocateId(profileKey, Site.class);
-    final Queue queue = QueueFactory.getDefaultQueue();
     final String userId = getUserId(user);
     // Start a transaction.
     Site site = ofy().transact(new Work<Site>() {
@@ -242,13 +247,16 @@ public class SitesRunApi {
    * @param user A user who invokes this method, null when the user is not signed in.
    * @param siteForm A SiteForm object representing user's inputs.
    * @return A newly created Site Object.
-   * @throws UnauthorizedException when the user is not signed in.
    */
   @ApiMethod(
       name = "createSiteAnonymously",
       path = "createSiteAnonymously",
       httpMethod = HttpMethod.POST)
   public Site createSiteAnonymously(final User user, final SiteForm siteForm) {
+    Site entity = ofy().load().type(Site.class).id(siteForm.getName()).now();
+    if (entity != null) {
+      throw new EntityExistsException("Site name already exists: " + siteForm.getName());
+    }
     // Start a transaction.
     Site site = ofy().transact(new Work<Site>() {
       @Override
@@ -308,6 +316,9 @@ public class SitesRunApi {
           return new TxResult<>(
               new ForbiddenException("Only the owner can update the site."));
         }
+        if (!site.getName().equals(siteForm.getName())) {
+          throw new IllegalArgumentException("Cannot update site name.");
+        }
         site.updateWithSiteForm(siteForm);
         ofy().save().entity(site).now();
         return new TxResult<>(site);
@@ -349,7 +360,7 @@ public class SitesRunApi {
     Key<Site> siteKey = Key.create(websafeSiteKey);
     Site site = ofy().load().key(siteKey).now();
     if (site == null) {
-      throw new NotFoundException("No Site found with key: " + site);
+      throw new NotFoundException("No Site found with key: " + websafeSiteKey);
     }
     return site;
   }
@@ -373,9 +384,7 @@ public class SitesRunApi {
       throw new UnauthorizedException("Authorization required");
     }
     String userId = getUserId(user);
-    return ofy().load().type(Site.class)
-        .ancestor(Key.create(Profile.class, userId))
-        .order("name").list();
+    return queryByOwner(userId).list();
   }
 
   /**
@@ -392,8 +401,11 @@ public class SitesRunApi {
       httpMethod = HttpMethod.POST
   )
   public List<Site> getSitesCreatedAnonymously(final User user) throws UnauthorizedException {
-    return ofy().load().type(Site.class)
-        .ancestor(Key.create(Profile.class, ANONYMOUS_USER_ID))
-        .order("name").list();
+    return queryByOwner(ANONYMOUS_USER_ID).list();
+  }
+
+  private static Query<Site> queryByOwner(final String userId) {
+    final Filter ownerFilter = new FilterPredicate("ownerUserId", FilterOperator.EQUAL, userId);
+    return ofy().load().type(Site.class).filter(ownerFilter);
   }
 }
