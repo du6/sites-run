@@ -218,10 +218,7 @@ public class SitesRunApi {
   @ApiMethod(name = "createSite", path = "createSite", httpMethod = HttpMethod.POST)
   public Site createSite(final User user, final SiteForm siteForm)
       throws UnauthorizedException {
-    Site entity = ofy().load().type(Site.class).id(siteForm.getName()).now();
-    if (entity != null) {
-      throw new EntityExistsException("Site name already exists: " + siteForm.getName());
-    }
+    checkEntityExistance(siteForm.getName());
     if (user == null) {
       throw new UnauthorizedException("Authorization required");
     }
@@ -253,19 +250,14 @@ public class SitesRunApi {
       path = "createSiteAnonymously",
       httpMethod = HttpMethod.POST)
   public Site createSiteAnonymously(final User user, final SiteForm siteForm) {
-    Site entity = ofy().load().type(Site.class).id(siteForm.getName()).now();
-    if (entity != null) {
-      throw new EntityExistsException("Site name already exists: " + siteForm.getName());
-    }
+    checkEntityExistance(siteForm.getName());
     // Start a transaction.
     Site site = ofy().transact(new Work<Site>() {
       @Override
       public Site run() {
-        // Fetch user's Profile.
-        Profile profile = getProfileFromUser(user, ANONYMOUS_USER_ID);
         Site site = new Site(ANONYMOUS_USER_ID, siteForm);
-        // Save Site and Profile.
-        ofy().save().entities(site, profile).now();
+        // Save Site.
+        ofy().save().entity(site).now();
         return site;
       }
     });
@@ -317,7 +309,7 @@ public class SitesRunApi {
               new ForbiddenException("Only the owner can update the site."));
         }
         if (!site.getName().equals(siteForm.getName())) {
-          throw new IllegalArgumentException("Cannot update site name.");
+          checkEntityExistance(siteForm.getName());
         }
         site.updateWithSiteForm(siteForm);
         ofy().save().entity(site).now();
@@ -326,20 +318,6 @@ public class SitesRunApi {
     });
     // NotFoundException or ForbiddenException is actually thrown here.
     return result.getResult();
-  }
-
-  @ApiMethod(
-      name = "getAnnouncement",
-      path = "announcement",
-      httpMethod = HttpMethod.GET
-  )
-  public Announcement getAnnouncement() {
-    MemcacheService memcacheService = MemcacheServiceFactory.getMemcacheService();
-    Object message = memcacheService.get(Constants.MEMCACHE_ANNOUNCEMENTS_KEY);
-    if (message != null) {
-      return new Announcement(message.toString());
-    }
-    return null;
   }
 
   /**
@@ -404,8 +382,29 @@ public class SitesRunApi {
     return queryByOwner(ANONYMOUS_USER_ID).list();
   }
 
+  @ApiMethod(
+      name = "getAnnouncement",
+      path = "announcement",
+      httpMethod = HttpMethod.GET
+  )
+  public Announcement getAnnouncement() {
+    MemcacheService memcacheService = MemcacheServiceFactory.getMemcacheService();
+    Object message = memcacheService.get(Constants.MEMCACHE_ANNOUNCEMENTS_KEY);
+    if (message != null) {
+      return new Announcement(message.toString());
+    }
+    return null;
+  }
+
   private static Query<Site> queryByOwner(final String userId) {
     final Filter ownerFilter = new FilterPredicate("ownerUserId", FilterOperator.EQUAL, userId);
     return ofy().load().type(Site.class).filter(ownerFilter);
+  }
+
+  private static void checkEntityExistance(String name) {
+    Site entity = ofy().load().type(Site.class).id(name).now();
+    if (entity != null) {
+      throw new EntityExistsException("Site name already exists: " + name);
+    }
   }
 }
