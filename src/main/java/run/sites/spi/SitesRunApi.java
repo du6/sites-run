@@ -3,6 +3,7 @@ package main.java.run.sites.spi;
 import com.google.api.server.spi.config.Api;
 import com.google.api.server.spi.config.ApiMethod;
 import com.google.api.server.spi.config.ApiMethod.HttpMethod;
+import com.google.api.server.spi.config.DefaultValue;
 import com.google.api.server.spi.response.ConflictException;
 import com.google.api.server.spi.response.ForbiddenException;
 import com.google.api.server.spi.response.NotFoundException;
@@ -48,6 +49,7 @@ public class SitesRunApi {
 
   private static final DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
   private  static final String ANONYMOUS_USER_ID = "anonymous@sites.run";
+  private  static final String DEFAULT_QUERY_LIMIT = "10";
   private static final Logger LOG = Logger.getLogger(SitesRunApi.class.getName());
 
   private static String extractDefaultDisplayNameFromEmail(String email) {
@@ -356,13 +358,16 @@ public class SitesRunApi {
       path = "getSitesCreated",
       httpMethod = HttpMethod.POST
   )
-  public List<Site> getSitesCreated(final User user) throws UnauthorizedException {
+  public List<Site> getSitesCreated(
+      final User user,
+      @Named("limit") @DefaultValue(DEFAULT_QUERY_LIMIT) final int limit)
+      throws UnauthorizedException {
     // If not signed in, throw a 401 error.
     if (user == null) {
       throw new UnauthorizedException("Authorization required");
     }
     String userId = getUserId(user);
-    return queryByOwner(userId).list();
+    return queryByOwner(userId).limit(limit).list();
   }
 
   /**
@@ -378,8 +383,11 @@ public class SitesRunApi {
       path = "getSitesCreatedAnonymously",
       httpMethod = HttpMethod.POST
   )
-  public List<Site> getSitesCreatedAnonymously(final User user) throws UnauthorizedException {
-    return queryByOwner(ANONYMOUS_USER_ID).list();
+  public List<Site> getSitesCreatedAnonymously(
+      final User user,
+      @Named("limit") @DefaultValue(DEFAULT_QUERY_LIMIT) final int limit)
+      throws UnauthorizedException {
+    return queryByOwner(ANONYMOUS_USER_ID).limit(limit).list();
   }
 
   @ApiMethod(
