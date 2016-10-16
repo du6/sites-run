@@ -67,7 +67,7 @@
     <security-constraint>
         <web-resource-collection>
             <web-resource-name>my</web-resource-name>
-            <url-pattern>/_my</url-pattern>
+            <url-pattern>/#/_my</url-pattern>
         </web-resource-collection>
         <auth-constraint>
             <role-name>*</role-name>

@@ -68796,6 +68796,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+var routes = [
+    { path: '_my', component: __WEBPACK_IMPORTED_MODULE_5__my_sites_my_sites_component__["a" /* MySitesComponent */] },
+    { path: '', component: __WEBPACK_IMPORTED_MODULE_6__home_home_component__["a" /* HomeComponent */] },
+];
 var SitesRunAppModule = (function () {
     function SitesRunAppModule() {
     }
@@ -68804,10 +68808,7 @@ var SitesRunAppModule = (function () {
             imports: [
                 __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__["d" /* BrowserModule */],
                 __WEBPACK_IMPORTED_MODULE_2__angular_material__["a" /* MaterialModule */].forRoot(),
-                __WEBPACK_IMPORTED_MODULE_3__angular_router__["b" /* RouterModule */].forRoot([
-                    { path: '_my', component: __WEBPACK_IMPORTED_MODULE_5__my_sites_my_sites_component__["a" /* MySitesComponent */] },
-                    { path: '', component: __WEBPACK_IMPORTED_MODULE_6__home_home_component__["a" /* HomeComponent */] },
-                ])
+                __WEBPACK_IMPORTED_MODULE_3__angular_router__["b" /* RouterModule */].forRoot(routes, { useHash: true })
             ],
             declarations: [__WEBPACK_IMPORTED_MODULE_4__app_component__["a" /* SitesRunAppComponent */], __WEBPACK_IMPORTED_MODULE_5__my_sites_my_sites_component__["a" /* MySitesComponent */], __WEBPACK_IMPORTED_MODULE_6__home_home_component__["a" /* HomeComponent */]],
             bootstrap: [__WEBPACK_IMPORTED_MODULE_4__app_component__["a" /* SitesRunAppComponent */]],

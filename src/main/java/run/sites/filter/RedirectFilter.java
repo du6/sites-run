@@ -32,6 +32,7 @@ public final class RedirectFilter implements Filter {
       Site site = ofy().load().type(Site.class).id(name).now();
       if (site != null) {
         ((HttpServletResponse)response).sendRedirect(site.getSource());
+        return;
       }
     }
     filterChain.doFilter(request, response);
