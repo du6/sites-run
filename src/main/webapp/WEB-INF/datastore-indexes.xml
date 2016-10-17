@@ -1,9 +1,6 @@
 <datastore-indexes autoGenerate="true">
-    <!--<datastore-index kind="Site" ancestor="true" source="manual">-->
-        <!--<property name="createdOn" direction="desc"/>-->
-    <!--</datastore-index>-->
-
-    <datastore-index kind="Site" ancestor="true" source="manual">
+    <datastore-index kind="Site" ancestor="false" source="manual">
         <property name="ownerUserId" direction="asc"/>
+        <property name="updatedOn" direction="desc"/>
     </datastore-index>
 </datastore-indexes>

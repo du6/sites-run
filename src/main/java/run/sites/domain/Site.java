@@ -9,6 +9,9 @@ import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
 import com.googlecode.objectify.annotation.Index;
 
+import org.joda.time.DateTime;
+import org.joda.time.format.ISODateTimeFormat;
+
 import java.net.MalformedURLException;
 import java.net.URL;
 
@@ -37,6 +40,12 @@ public class Site {
    * The description of the site.
    */
   private String description;
+
+  /**
+   * The latest update time.
+   */
+  @Index
+  private DateTime updatedOn;
 
   /**
    * The userId of the owner.
@@ -69,6 +78,10 @@ public class Site {
 
   public String getSource() {
     return source.toString();
+  }
+
+  public String getUpdatedOn() {
+    return updatedOn.toString(ISODateTimeFormat.dateTime());
   }
 
   // Get a String version of the key
@@ -108,6 +121,7 @@ public class Site {
       }
       this.source = new URL(siteForm.getSource());
       this.description = siteForm.getDescription();
+      this.updatedOn = DateTime.now();
     } catch (MalformedURLException e) {
       throw new IllegalArgumentException("Illegal URL: " + siteForm.getSource());
     }

@@ -220,7 +220,7 @@ public class SitesRunApi {
   @ApiMethod(name = "createSite", path = "createSite", httpMethod = HttpMethod.POST)
   public Site createSite(final User user, final SiteForm siteForm)
       throws UnauthorizedException {
-    checkEntityExistance(siteForm.getName());
+    checkEntityExistence(siteForm.getName());
     if (user == null) {
       throw new UnauthorizedException("Authorization required");
     }
@@ -252,7 +252,7 @@ public class SitesRunApi {
       path = "createSiteAnonymously",
       httpMethod = HttpMethod.POST)
   public Site createSiteAnonymously(final User user, final SiteForm siteForm) {
-    checkEntityExistance(siteForm.getName());
+    checkEntityExistence(siteForm.getName());
     // Start a transaction.
     Site site = ofy().transact(new Work<Site>() {
       @Override
@@ -311,7 +311,7 @@ public class SitesRunApi {
               new ForbiddenException("Only the owner can update the site."));
         }
         if (!site.getName().equals(siteForm.getName())) {
-          checkEntityExistance(siteForm.getName());
+          checkEntityExistence(siteForm.getName());
         }
         site.updateWithSiteForm(siteForm);
         ofy().save().entity(site).now();
@@ -367,7 +367,7 @@ public class SitesRunApi {
       throw new UnauthorizedException("Authorization required");
     }
     String userId = getUserId(user);
-    return queryByOwner(userId).limit(limit).list();
+    return queryByOwner(userId).order("-updatedOn").limit(limit).list();
   }
 
   /**
@@ -387,7 +387,7 @@ public class SitesRunApi {
       final User user,
       @Named("limit") @DefaultValue(DEFAULT_QUERY_LIMIT) final int limit)
       throws UnauthorizedException {
-    return queryByOwner(ANONYMOUS_USER_ID).limit(limit).list();
+    return queryByOwner(ANONYMOUS_USER_ID).order("-updatedOn").limit(limit).list();
   }
 
   @ApiMethod(
@@ -409,7 +409,7 @@ public class SitesRunApi {
     return ofy().load().type(Site.class).filter(ownerFilter);
   }
 
-  private static void checkEntityExistance(String name) {
+  private static void checkEntityExistence(String name) {
     Site entity = ofy().load().type(Site.class).id(name).now();
     if (entity != null) {
       throw new EntityExistsException("Site name already exists: " + name);
