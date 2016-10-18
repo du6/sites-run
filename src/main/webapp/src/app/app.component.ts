@@ -2,8 +2,7 @@ import {Location} from '@angular/common';
 import {Component} from '@angular/core';
 import {Router} from '@angular/router';
 
-// Google's login API namespace
-declare var gapi: any;
+import {AuthService} from './services/auth.service';
 
 @Component({
   selector: 'sites-run-app',
@@ -11,22 +10,23 @@ declare var gapi: any;
   styleUrls: ['app.component.scss'],
 })
 export class SitesRunAppComponent {
-  auth2: any;
-
-  constructor(private router_: Router, private location_: Location) {
-    this.auth2 = gapi.auth2.getAuthInstance();
-    if (this.auth2.isSignedIn.get()) {
+  constructor(private router_: Router, private location_: Location, private auth_: AuthService) {
+    if (this.isSignedIn()) {
       this.location_.go('/_my');
     } else {
       this.location_.go('/');
     }
   }
 
+  isSignedIn(): boolean {
+    return this.auth_.isSignedIn();
+  }
+
   signIn() {
-    this.auth2.signIn().then(() => this.router_.navigate(['/_my']));
+    this.auth_.signIn().then(() => this.router_.navigate(['/_my']));
   }
 
   signOut() {
-    this.auth2.signOut().then(() => this.router_.navigate(['/']));
+    this.auth_.signOut().then(() => this.router_.navigate(['/']));
   }
 }

@@ -1,0 +1,5 @@
+<ul *ngIf="!loading" class="site-list">
+  <li *ngFor="let site of sites">
+    <sites-run-site-detail [site]="site"></sites-run-site-detail>
+  </li>
+</ul>
