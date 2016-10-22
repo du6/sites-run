@@ -1,1 +1,15 @@
-<sites-run-site-list mode={{mode}}></sites-run-site-list>
+<md-card>
+  <md-card-title>Create a Site</md-card-title>
+  <md-divider></md-divider>
+  <md-card-content>
+    <sites-run-create-site [mode]="mode" (siteSaved)="onSiteSave($event)"></sites-run-create-site>
+  </md-card-content>
+</md-card>
+
+<md-card>
+  <md-card-title>My Sites</md-card-title>
+  <md-divider></md-divider>
+  <md-card-content>
+    <sites-run-site-list [mode]="mode" [sites]="sites"></sites-run-site-list>
+  </md-card-content>
+</md-card>

@@ -1,5 +1,6 @@
-<ul *ngIf="!loading" class="site-list">
-  <li *ngFor="let site of sites">
+<md-list *ngIf="!loading" class="site-list">
+  <md-list-item *ngFor="let site of sites">
+    <span>&#9632;</span>
     <sites-run-site-detail [site]="site"></sites-run-site-detail>
-  </li>
-</ul>
+  </md-list-item>
+</md-list>

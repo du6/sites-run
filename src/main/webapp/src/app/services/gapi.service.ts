@@ -24,4 +24,8 @@ export class GapiService {
               }
             }));
   }
+
+  createSite(site: Site): Promise<Site> {
+    return this.gapi_.client.sitesRunApi.createSite(site);
+  }
 }
