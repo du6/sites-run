@@ -387,14 +387,14 @@ exports = module.exports = __webpack_require__(414)();
 
 
 // module
-exports.push([module.i, "/* You can add global styles to this file, and also import other style files */\n\nbody {\n  margin: 0;\n}\n", ""]);
+exports.push([module.i, "/* You can add global styles to this file, and also import other style files */\n\nbody {\n  background-color: #F5F5F5;\n  margin: 0;\n}\n\nmd-card {\n  margin: 20px;\n}\n", ""]);
 
 // exports
 
 
 /***/ },
 
-/***/ 787:
+/***/ 788:
 /***/ function(module, exports, __webpack_require__) {
 
 __webpack_require__(434);
@@ -403,5 +403,5 @@ module.exports = __webpack_require__(433);
 
 /***/ }
 
-},[787]);
+},[788]);
 //# sourceMappingURL=styles.map
