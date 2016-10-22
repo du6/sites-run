@@ -1,9 +1,10 @@
+@import '../common/color';
+
 .site-detail {
-  
   display: flex;
 
   .delete-button {
-    background-color: gray;
+    background-color: $button-background-color;
     margin-right: 10px;
     min-width: 40px;
   }

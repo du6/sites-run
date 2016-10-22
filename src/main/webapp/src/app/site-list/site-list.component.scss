@@ -1,6 +1,19 @@
+@import '../common/color';
+
 md-list.site-list {
   md-list-item .md-list-item {
     height: 100%;
     min-height: 60px;
+
+    .delete-button {
+      display: none;
+    }
+
+    &:hover {
+      background-color: $hover-background-color;
+      .delete-button {
+        display: block;
+      }
+    }
   }
 }
