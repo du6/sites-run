@@ -1,4 +1,4 @@
-<md-list *ngIf="!loading" class="site-list">
+<md-list class="site-list">
   <md-list-item *ngFor="let site of sites">
     <span>&#9632;</span>
     <sites-run-site-detail [site]="site"></sites-run-site-detail>

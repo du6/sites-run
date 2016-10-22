@@ -10,6 +10,7 @@
   <md-card-title>My Sites</md-card-title>
   <md-divider></md-divider>
   <md-card-content>
-    <sites-run-site-list [mode]="mode" [sites]="sites"></sites-run-site-list>
+    <md-spinner *ngIf="loading"></md-spinner>
+    <sites-run-site-list *ngIf="!loading" [mode]="mode" [sites]="sites"></sites-run-site-list>
   </md-card-content>
 </md-card>

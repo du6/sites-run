@@ -1,4 +1,5 @@
-import {Component} from '@angular/core';
+import {Component, ChangeDetectorRef} from '@angular/core';
+import { List } from 'immutable';
 
 import {Mode} from '../common/mode';
 import {Site} from '../common/site';
@@ -10,14 +11,11 @@ import {GapiService} from '../services/gapi.service';
   styleUrls: ['my-sites.component.scss'],
 })
 export class MySitesComponent {
-  mode: Mode;
+  mode: Mode = Mode.USER;
   loading: boolean;
-  sites: Site[];
+  sites: List<Site> = List<Site>();
 
-  constructor(private gapi_: GapiService) {
-    this.mode = Mode.USER;
-    this.sites = [];
-  }
+  constructor(private gapi_: GapiService, private ref_: ChangeDetectorRef) {}
 
   ngOnInit() {
     this.loadSites();
@@ -26,8 +24,9 @@ export class MySitesComponent {
   loadSites() {
     this.loading = true;
     this.gapi_.loadSitesCreatedByUser()
-        .then((items) => this.sites = items)
-        .then(() => this.loading = false);
+        .then((items) => this.sites = List<Site>(items))
+        .then(() => this.loading = false)
+        .then(() => this.ref_.detectChanges());
   }
 
   onSiteSave(site: Site) {
