@@ -303,6 +303,10 @@ public class SitesRunApi {
               new NotFoundException("No Site found with the key: "
                   + websafeSiteKey));
         }
+        if (site.getOwnerUserId().equals(ANONYMOUS_USER_ID)) {
+          return new TxResult<>(
+              new ForbiddenException("Sites created anonymously cannot be edited."));
+        }
         // If the user is not the owner, throw a 403 error.
         Profile profile = ofy().load().key(Key.create(Profile.class, userId)).now();
         if (profile == null ||
