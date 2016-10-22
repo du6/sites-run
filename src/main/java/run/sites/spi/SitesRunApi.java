@@ -350,6 +350,29 @@ public class SitesRunApi {
   }
 
   /**
+   * Deletes a Site object with the given siteId.
+   *
+   * @param websafeSiteKey The String representation of the Site Key.
+   * @throws NotFoundException when there is no Site with the given siteId.
+   */
+  @ApiMethod(
+      name = "deleteSite",
+      path = "site/{websafeSiteKey}",
+      httpMethod = HttpMethod.DELETE
+  )
+  public void deleteSite(
+      @Named("websafeSiteKey") final String websafeSiteKey)
+      throws NotFoundException {
+    Key<Site> siteKey = Key.create(websafeSiteKey);
+    Site site = ofy().load().key(siteKey).now();
+    if (site == null) {
+      throw new NotFoundException("No Site found with key: " + websafeSiteKey);
+    } else {
+      ofy().delete().key(siteKey).now();
+    }
+  }
+
+  /**
    * Returns a list of Sites that the user created.
    * In order to receive the websafeSiteKey via the JSON params, uses a POST method.
    *
