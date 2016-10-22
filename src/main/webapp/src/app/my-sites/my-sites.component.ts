@@ -34,6 +34,8 @@ export class MySitesComponent {
   }
 
   private addSite_(site: Site) {
-    this.sites.unshift(site);
+    this.sites = this.sites.unshift(site);
+    //TODO(du6): update view automatically
+    this.ref_.detectChanges();
   }
 }

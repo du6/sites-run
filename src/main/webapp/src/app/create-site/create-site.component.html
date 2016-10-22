@@ -1,11 +1,16 @@
 <form [formGroup]="siteForm" (submit)="saveSite($event)" class="create-site-form">
   <div>
-    <md-input #name formControlName="name" type="text" placeholder="name">
-      <!--TODO(du6): valid name with startWith_-->
-      <!--<md-hint align="start" [hidden]="name.valid || name.value.length == 0">name cannot start with '_'</md-hint>-->
+    <md-input formControlName="name" type="text" placeholder="name">
+      <md-hint align="start" [hidden]="name.valid || !name.errors.startWith_">name cannot start with '_'</md-hint>
     </md-input>
   </div>
-  <div><md-input formControlName="source" type="url" placeholder="site url"></md-input></div>
+  <div>
+    <md-input formControlName="source" type="url" placeholder="site url">
+      <md-hint align="start" [hidden]="source.valid || !source.errors.validationFail">
+        must be a valid url (e.g., http://www.google.com)
+      </md-hint>      
+    </md-input>
+  </div>
   <div><md-input formControlName="description" type="text" placeholder="description" maxLength="500"></md-input></div>
   <div>
     <button md-raised-button color="primary" type="reset">Reset</button>
