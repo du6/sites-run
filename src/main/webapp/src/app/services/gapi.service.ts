@@ -13,7 +13,7 @@ export class GapiService {
     this.gapi_ = gapi;
   }
 
-  loadSitesCreatedByUser(limit: number = 10): Promise<Site[]> {
+  loadSitesCreatedByUser(limit: number = 1000): Promise<Site[]> {
     return new Promise((resolve,reject) => 
         this.gapi_.client.sitesRunApi.getSitesCreated(limit)
             .execute((resp) => {
@@ -26,6 +26,11 @@ export class GapiService {
   }
 
   createSite(site: Site): Promise<Site> {
-    return this.gapi_.client.sitesRunApi.createSite(site);
+    return this.gapi_.client.sitesRunApi.createSite(site)
+        .then((resp => resp.result));
+  }
+
+  deleteSite(websafeKey: string): Promise<any> {
+    return this.gapi_.client.sitesRunApi.deleteSite({websafeSiteKey: websafeKey});
   }
 }

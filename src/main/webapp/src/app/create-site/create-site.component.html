@@ -12,8 +12,8 @@
     </md-input>
   </div>
   <div><md-input formControlName="description" type="text" placeholder="description" maxLength="500"></md-input></div>
-  <div>
+  <div class="action-buttons">
     <button md-raised-button color="primary" type="reset">Reset</button>
-    <button md-raised-button color="primary" type="submit" [disabled]="!siteForm.valid">Save</button>
+    <button md-raised-button color="primary" type="submit" [disabled]="!siteForm.valid" class="save-button">Save</button>
   </div>
 </form>

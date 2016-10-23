@@ -1,7 +1,8 @@
-import {Input, Output, Component, EventEmitter} from '@angular/core';
+import {Input, Output, Component, EventEmitter, ViewContainerRef} from '@angular/core';
 import {FormBuilder, FormGroup, FormControl, Validators} from '@angular/forms';
 
 import {GapiService} from '../services/gapi.service';
+import {ToastService} from '../services/toast.service';
 import {Site} from '../common/site';
 import {Mode} from '../common/mode';
 
@@ -18,7 +19,11 @@ export class CreateSiteComponent {
   source: FormControl;
   description: FormControl;
 
-  constructor(private fb_: FormBuilder, private gapi_: GapiService) {
+  constructor(
+    private fb_: FormBuilder, 
+    private gapi_: GapiService,
+    private toast_: ToastService,
+    private viewContainerRef_: ViewContainerRef) {
     this.name = new FormControl('', this.validName);
     this.source = new FormControl('', this.validUrl);
     this.description = new FormControl('', Validators.maxLength(500));
@@ -57,8 +62,9 @@ export class CreateSiteComponent {
     site.source = this.source.value;
     site.description = this.description.value;
     this.siteForm.reset();
-    this.gapi_.createSite(site).then(() => {
-      this.siteSaved.emit(site);
-    });
+    this.gapi_.createSite(site).then((createdSite) => {
+      this.siteSaved.emit(createdSite);
+      this.toast_.actionSuccessToast(`Site "${createdSite.name}" has been created.`, this.viewContainerRef_);
+    }, () => this.toast_.actionFailureToast('Site creation failed!', this.viewContainerRef_));
   }
 }

@@ -12,6 +12,7 @@ import {SiteDetailComponent} from './site-detail/site-detail.component';
 import {CreateSiteComponent} from './create-site/create-site.component';
 import {AuthService} from './services/auth.service';
 import {GapiService} from './services/gapi.service';
+import {ToastService} from './services/toast.service';
 
 const routes: Routes = [
  { path: '_my', component: MySitesComponent },
@@ -26,7 +27,7 @@ const routes: Routes = [
     FormsModule,
     ReactiveFormsModule,
   ],
-  providers: [AuthService, GapiService],
+  providers: [AuthService, GapiService, ToastService],
   declarations: [SitesRunAppComponent, MySitesComponent, HomeComponent, SiteListComponent, SiteDetailComponent, CreateSiteComponent],
   bootstrap: [SitesRunAppComponent],
 })

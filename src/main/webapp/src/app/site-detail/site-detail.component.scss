@@ -3,9 +3,17 @@
 .site-detail {
   display: flex;
 
+  .description {
+    margin-top: 10px;
+  }
+
+  .action-buttons {
+    margin-top: 20px;
+  }
+
   .delete-button {
     background-color: $button-background-color;
-    margin-right: 10px;
+    margin-left: 20px;
     min-width: 40px;
   }
 }

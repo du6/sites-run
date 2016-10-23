@@ -1,5 +1,5 @@
 <md-list class="site-list">
   <md-list-item *ngFor="let site of sites">
-    <sites-run-site-detail [site]="site"></sites-run-site-detail>
+    <sites-run-site-detail [site]="site" (siteDeleted)="deleteSite($event)"></sites-run-site-detail>
   </md-list-item>
 </md-list>

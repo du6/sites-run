@@ -1,9 +1,19 @@
 .create-site-form {
   md-input {
+    font-size: 16px;
+    padding-top: 10px;
     width: 100%;
   }
 
   .md-hint {
     color: red;
+  }
+
+  .action-buttons {
+    margin-top: 20px;
+  }
+
+  .save-button {
+    margin-left: 20px;
   }
 }

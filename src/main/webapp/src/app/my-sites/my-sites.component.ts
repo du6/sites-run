@@ -15,7 +15,9 @@ export class MySitesComponent {
   loading: boolean;
   sites: List<Site> = List<Site>();
 
-  constructor(private gapi_: GapiService, private ref_: ChangeDetectorRef) {}
+  constructor(
+    private gapi_: GapiService, 
+    private changeDetectorRef_: ChangeDetectorRef) {}
 
   ngOnInit() {
     this.loadSites();
@@ -26,16 +28,27 @@ export class MySitesComponent {
     this.gapi_.loadSitesCreatedByUser()
         .then((items) => this.sites = List<Site>(items))
         .then(() => this.loading = false)
-        .then(() => this.ref_.detectChanges());
+        .then(() => this.changeDetectorRef_.detectChanges());
   }
 
-  onSiteSave(site: Site) {
+  onSiteSaved(site: Site) {
     this.addSite_(site);
+  }
+
+  onSiteDeleted(site: Site) {
+    this.deleteSite_(site);
   }
 
   private addSite_(site: Site) {
     this.sites = this.sites.unshift(site);
     //TODO(du6): update view automatically
-    this.ref_.detectChanges();
+    this.changeDetectorRef_.detectChanges();
+  }
+
+  private deleteSite_(site: Site) {
+    const index = this.sites.indexOf(site);
+    if (index !== -1) {
+      this.sites = this.sites.delete(index);
+    }
   }
 }
