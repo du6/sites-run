@@ -1,6 +1,6 @@
 webpackJsonp([1,2],{
 
-/***/ 414:
+/***/ 416:
 /***/ function(module, exports) {
 
 /*
@@ -57,7 +57,7 @@ module.exports = function() {
 
 /***/ },
 
-/***/ 430:
+/***/ 433:
 /***/ function(module, exports) {
 
 /*
@@ -310,16 +310,16 @@ function updateLink(linkElement, obj) {
 
 /***/ },
 
-/***/ 433:
+/***/ 436:
 /***/ function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(739);
+var content = __webpack_require__(741);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // add the styles to the DOM
-var update = __webpack_require__(430)(content, {});
+var update = __webpack_require__(433)(content, {});
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -337,16 +337,16 @@ if(false) {
 
 /***/ },
 
-/***/ 434:
+/***/ 437:
 /***/ function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(740);
+var content = __webpack_require__(742);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // add the styles to the DOM
-var update = __webpack_require__(430)(content, {});
+var update = __webpack_require__(433)(content, {});
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -364,10 +364,10 @@ if(false) {
 
 /***/ },
 
-/***/ 739:
+/***/ 741:
 /***/ function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(414)();
+exports = module.exports = __webpack_require__(416)();
 // imports
 
 
@@ -379,29 +379,29 @@ exports.push([module.i, ".md-elevation-z0 {\n  box-shadow: 0px 0px 0px 0px rgba(
 
 /***/ },
 
-/***/ 740:
+/***/ 742:
 /***/ function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(414)();
+exports = module.exports = __webpack_require__(416)();
 // imports
 
 
 // module
-exports.push([module.i, "/* You can add global styles to this file, and also import other style files */\n\nbody {\n  background-color: #F5F5F5;\n  margin: 0;\n}\n\nmd-card {\n  margin: 20px;\n}\n", ""]);
+exports.push([module.i, "/* You can add global styles to this file, and also import other style files */\n\nbody {\n  background-color: #F5F5F5;\n  margin: 0;\n}\n\nfooter {\n  background-color: mediumpurple;\n  bottom: 0;\n  padding: 20px;\n  position: absolute;\n  width: 100%;\n}\n\nmd-card {\n  margin: 20px;\n}\n", ""]);
 
 // exports
 
 
 /***/ },
 
-/***/ 788:
+/***/ 789:
 /***/ function(module, exports, __webpack_require__) {
 
-__webpack_require__(434);
-module.exports = __webpack_require__(433);
+__webpack_require__(437);
+module.exports = __webpack_require__(436);
 
 
 /***/ }
 
-},[788]);
+},[789]);
 //# sourceMappingURL=styles.map
