@@ -1,4 +1,4 @@
-import {Input, Output, Component, EventEmitter, ViewContainerRef} from '@angular/core';
+import {Input, Output, Component, EventEmitter, ViewContainerRef, ChangeDetectorRef} from '@angular/core';
 import {FormBuilder, FormGroup, FormControl, Validators} from '@angular/forms';
 
 import {GapiService} from '../services/gapi.service';
@@ -18,11 +18,14 @@ export class CreateSiteComponent {
   name: FormControl;
   source: FormControl;
   description: FormControl;
+  isNameConflict: boolean = false;
+  checkingNameConflict: boolean = false;
 
   constructor(
     private fb_: FormBuilder, 
     private gapi_: GapiService,
     private toast_: ToastService,
+    private changeDetectorRef_: ChangeDetectorRef,
     private viewContainerRef_: ViewContainerRef) {
     this.name = new FormControl('', this.validName);
     this.source = new FormControl('', this.validUrl);
@@ -38,10 +41,10 @@ export class CreateSiteComponent {
   validName(c: FormControl): {[key: string]: any} {
     if (!c.value || c.value.length == 0) {
       return {empty: true};
-    } else if (c.value.charAt(0) != '_') {
-      return null;
-    } else {
+    } else if (c.value.charAt(0) == '_') {
       return {startWith_: true};
+    } else {
+      return null;
     }
   }
 
@@ -56,7 +59,7 @@ export class CreateSiteComponent {
     }
   }
 
-  saveSite(event) {
+  saveSite(event: any) {
     const site = new Site();
     site.name = this.name.value;
     site.source = this.source.value;
@@ -67,5 +70,19 @@ export class CreateSiteComponent {
       this.siteSaved.emit(createdSite);
       this.toast_.actionSuccessToast(`Site "${createdSite.name}" has been created.`, this.viewContainerRef_);
     }, () => this.toast_.actionFailureToast('Site creation failed!', this.viewContainerRef_));
+  }
+  
+  checkNameConflict() {
+    this.checkingNameConflict = true;
+    this.gapi_.getSiteByName(this.name.value)
+        .then((site) => {
+          this.checkingNameConflict = false;
+          this.isNameConflict = true;
+          this.changeDetectorRef_.detectChanges();
+        }, () => {
+          this.checkingNameConflict = false;
+          this.isNameConflict = false;
+          this.changeDetectorRef_.detectChanges();
+        });
   }
 }

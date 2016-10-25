@@ -38,4 +38,8 @@ export class GapiService {
   deleteSite(websafeKey: string): Promise<any> {
     return this.gapi_.client.sitesRunApi.deleteSite({websafeSiteKey: websafeKey});
   }
+
+  getSiteByName(name: string): Promise<Site> {
+    return this.gapi_.client.sitesRunApi.getSiteByName({name: name});
+  }
 }

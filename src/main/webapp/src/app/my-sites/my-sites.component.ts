@@ -34,7 +34,7 @@ export class MySitesComponent {
   loadSites() {
     this.loading = true;
     this.gapi_.loadSitesCreatedByUser()
-        .then((items) => this.sites = List<Site>(items))
+        .then((items) => this.sites = List<Site>(items), () => this.loading = false)
         .then(() => this.loading = false)
         .then(() => this.changeDetectorRef_.detectChanges());
   }

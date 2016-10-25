@@ -350,6 +350,28 @@ public class SitesRunApi {
   }
 
   /**
+   * Returns a Site object with the given name.
+   *
+   * @param name
+   * @return a Site object with the given name.
+   * @throws NotFoundException when there is no Site with the given name.
+   */
+  @ApiMethod(
+      name = "getSiteByName",
+      path = "getSiteByName/{name}",
+      httpMethod = HttpMethod.GET
+  )
+  public Site getSiteByName(
+      @Named("name") final String name)
+      throws NotFoundException {
+    Site site = ofy().load().type(Site.class).id(name).now();
+    if (site == null) {
+      throw new NotFoundException("No Site found with name: " + name);
+    };
+    return site;
+  }
+
+  /**
    * Deletes a Site object with the given siteId.
    *
    * @param websafeSiteKey The String representation of the Site Key.

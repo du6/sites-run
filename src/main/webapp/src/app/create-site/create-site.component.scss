@@ -16,4 +16,22 @@
   .save-button {
     margin-left: 20px;
   }
+
+  .name-wrapper {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+
+    .name-input {
+      flex: auto;
+    }
+
+    .name-status-label {
+      min-width: 250px;
+    }
+
+    .name-conflict-message {
+      color: red;
+    }
+  }
 }
