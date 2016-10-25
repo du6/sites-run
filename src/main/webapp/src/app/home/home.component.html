@@ -5,6 +5,14 @@
       <h3><button md-raised-button color="primary" (click)="signIn()">Sign In</button> to save the weblinks you created.</h3>
     </md-card-content>
   </md-card>
+
+  <md-card>
+    <md-card-title>Create a Site Anonymously</md-card-title>
+    <md-divider></md-divider>
+    <md-card-content>
+      <sites-run-create-site [mode]="mode" (siteSaved)="onSiteSaved($event)"></sites-run-create-site>
+    </md-card-content>
+  </md-card>
 </div>
 
 <footer>

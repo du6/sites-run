@@ -62,7 +62,8 @@ export class CreateSiteComponent {
     site.source = this.source.value;
     site.description = this.description.value;
     this.siteForm.reset();
-    this.gapi_.createSite(site).then((createdSite) => {
+    const createSitePromise = this.mode === Mode.USER ? this.gapi_.createSite(site) : this.gapi_.createSiteAnonymously(site);
+    createSitePromise.then((createdSite) => {
       this.siteSaved.emit(createdSite);
       this.toast_.actionSuccessToast(`Site "${createdSite.name}" has been created.`, this.viewContainerRef_);
     }, () => this.toast_.actionFailureToast('Site creation failed!', this.viewContainerRef_));

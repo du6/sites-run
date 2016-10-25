@@ -30,6 +30,11 @@ export class GapiService {
         .then((resp => resp.result));
   }
 
+  createSiteAnonymously(site: Site): Promise<Site> {
+    return this.gapi_.client.sitesRunApi.createSiteAnonymously(site)
+        .then((resp => resp.result));
+  }
+
   deleteSite(websafeKey: string): Promise<any> {
     return this.gapi_.client.sitesRunApi.deleteSite({websafeSiteKey: websafeKey});
   }
