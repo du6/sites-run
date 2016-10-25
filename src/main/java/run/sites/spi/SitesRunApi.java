@@ -279,7 +279,7 @@ public class SitesRunApi {
    */
   @ApiMethod(
       name = "updateSite",
-      path = "site/{websafeSiteKey}",
+      path = "updateSite/{websafeSiteKey}",
       httpMethod = HttpMethod.PUT
   )
   public Site updateSite(final User user, final SiteForm siteForm,
@@ -335,7 +335,7 @@ public class SitesRunApi {
    */
   @ApiMethod(
       name = "getSite",
-      path = "site/{websafeSiteKey}",
+      path = "getSite/{websafeSiteKey}",
       httpMethod = HttpMethod.GET
   )
   public Site getSite(
@@ -379,7 +379,7 @@ public class SitesRunApi {
    */
   @ApiMethod(
       name = "deleteSite",
-      path = "site/{websafeSiteKey}",
+      path = "deleteSite/{websafeSiteKey}",
       httpMethod = HttpMethod.DELETE
   )
   public void deleteSite(

@@ -74032,13 +74032,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 var CreateSiteComponent = (function () {
-    function CreateSiteComponent(fb_, gapi_, toast_, viewContainerRef_) {
+    function CreateSiteComponent(fb_, gapi_, toast_, changeDetectorRef_, viewContainerRef_) {
         this.fb_ = fb_;
         this.gapi_ = gapi_;
         this.toast_ = toast_;
+        this.changeDetectorRef_ = changeDetectorRef_;
         this.viewContainerRef_ = viewContainerRef_;
         this.siteSaved = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["_15" /* EventEmitter */]();
-        this.isNameConfilict = false;
+        this.isNameConflict = false;
         this.checkingNameConflict = false;
         this.name = new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["c" /* FormControl */]('', this.validName);
         this.source = new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["c" /* FormControl */]('', this.validUrl);
@@ -74053,11 +74054,11 @@ var CreateSiteComponent = (function () {
         if (!c.value || c.value.length == 0) {
             return { empty: true };
         }
-        else if (c.value.charAt(0) != '_') {
-            return null;
+        else if (c.value.charAt(0) == '_') {
+            return { startWith_: true };
         }
         else {
-            return { startWith_: true };
+            return null;
         }
     };
     CreateSiteComponent.prototype.validUrl = function (c) {
@@ -74091,10 +74092,12 @@ var CreateSiteComponent = (function () {
         this.gapi_.getSiteByName(this.name.value)
             .then(function (site) {
             _this.checkingNameConflict = false;
-            _this.isNameConfilict = true;
+            _this.isNameConflict = true;
+            _this.changeDetectorRef_.detectChanges();
         }, function () {
             _this.checkingNameConflict = false;
-            _this.isNameConfilict = false;
+            _this.isNameConflict = false;
+            _this.changeDetectorRef_.detectChanges();
         });
     };
     __decorate([
@@ -74111,10 +74114,10 @@ var CreateSiteComponent = (function () {
             template: __webpack_require__(751),
             styles: [__webpack_require__(745)],
         }), 
-        __metadata('design:paramtypes', [(typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1__angular_forms__["e" /* FormBuilder */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__angular_forms__["e" /* FormBuilder */]) === 'function' && _c) || Object, (typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2__services_gapi_service__["a" /* GapiService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__services_gapi_service__["a" /* GapiService */]) === 'function' && _d) || Object, (typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_3__services_toast_service__["a" /* ToastService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_3__services_toast_service__["a" /* ToastService */]) === 'function' && _e) || Object, (typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["i" /* ViewContainerRef */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_0__angular_core__["i" /* ViewContainerRef */]) === 'function' && _f) || Object])
+        __metadata('design:paramtypes', [(typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1__angular_forms__["e" /* FormBuilder */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__angular_forms__["e" /* FormBuilder */]) === 'function' && _c) || Object, (typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2__services_gapi_service__["a" /* GapiService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__services_gapi_service__["a" /* GapiService */]) === 'function' && _d) || Object, (typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_3__services_toast_service__["a" /* ToastService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_3__services_toast_service__["a" /* ToastService */]) === 'function' && _e) || Object, (typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["j" /* ChangeDetectorRef */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_0__angular_core__["j" /* ChangeDetectorRef */]) === 'function' && _f) || Object, (typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["i" /* ViewContainerRef */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_0__angular_core__["i" /* ViewContainerRef */]) === 'function' && _g) || Object])
     ], CreateSiteComponent);
     return CreateSiteComponent;
-    var _a, _b, _c, _d, _e, _f;
+    var _a, _b, _c, _d, _e, _f, _g;
 }());
 
 
@@ -77468,7 +77471,7 @@ module.exports = ".sites-run-app .fill-in-space {\n  flex: 1 1 auto; }\n\n.sites
 /* 745 */
 /***/ function(module, exports) {
 
-module.exports = ".create-site-form md-input {\n  font-size: 16px;\n  padding-top: 10px;\n  width: 100%; }\n\n.create-site-form .md-hint {\n  color: red; }\n\n.create-site-form .action-buttons {\n  margin-top: 20px; }\n\n.create-site-form .save-button {\n  margin-left: 20px; }\n\n.create-site-form .name-wrapper {\n  display: flex;\n  flex-direction: row; }\n  .create-site-form .name-wrapper .name-input {\n    flex: auto; }\n  .create-site-form .name-wrapper .name-conflict-message {\n    color: red;\n    width: 200px; }\n"
+module.exports = ".create-site-form md-input {\n  font-size: 16px;\n  padding-top: 10px;\n  width: 100%; }\n\n.create-site-form .md-hint {\n  color: red; }\n\n.create-site-form .action-buttons {\n  margin-top: 20px; }\n\n.create-site-form .save-button {\n  margin-left: 20px; }\n\n.create-site-form .name-wrapper {\n  align-items: center;\n  display: flex;\n  flex-direction: row; }\n  .create-site-form .name-wrapper .name-input {\n    flex: auto; }\n  .create-site-form .name-wrapper .name-status-label {\n    min-width: 250px; }\n  .create-site-form .name-wrapper .name-conflict-message {\n    color: red; }\n"
 
 /***/ },
 /* 746 */
@@ -77504,13 +77507,13 @@ module.exports = "<div class=\"sites-run-app\">\n  <md-toolbar color=\"primary\"
 /* 751 */
 /***/ function(module, exports) {
 
-module.exports = "<form [formGroup]=\"siteForm\" (submit)=\"saveSite($event)\" class=\"create-site-form\">\n  <div class=\"name-wrapper\">\n    <md-input formControlName=\"name\" type=\"text\" placeholder=\"name\" class=\"name-input\" (blue)=\"checkNameConflict()\">\n      <md-hint align=\"start\" [hidden]=\"name.valid || !name.errors.startWith_\">name cannot start with '_'</md-hint>\n    </md-input>\n    <div *ngIf=\"isNameConflict\" class=\"name-conflict-message\">\"{{name}}\" already exists!</div>\n    <div *ngIf=\"checkingNameConflict\" class=\"name-conflict-check\">Checking name conflict...</div>\n  </div>\n  <div>\n    <md-input formControlName=\"source\" type=\"url\" placeholder=\"website url\">\n      <md-hint align=\"start\" [hidden]=\"source.valid || !source.errors.validationFail\">\n        must be a valid url (e.g., http://www.google.com)\n      </md-hint>      \n    </md-input>\n  </div>\n  <div><md-input formControlName=\"description\" type=\"text\" placeholder=\"description (optional)\" maxLength=\"500\"></md-input></div>\n  <div class=\"action-buttons\">\n    <button md-raised-button color=\"primary\" type=\"reset\">Reset</button>\n    <button md-raised-button color=\"primary\" type=\"submit\" [disabled]=\"!siteForm.valid\" class=\"save-button\">Save</button>\n  </div>\n</form>"
+module.exports = "<form [formGroup]=\"siteForm\" (submit)=\"saveSite($event)\" class=\"create-site-form\">\n  <div class=\"name-wrapper\">\n    <md-input formControlName=\"name\" type=\"text\" placeholder=\"name\" class=\"name-input\" (keyup)=\"checkNameConflict()\">\n      <md-hint align=\"start\" [hidden]=\"name.valid || !name.errors.startWith_\">name cannot start with '_'</md-hint>\n    </md-input>\n    <div class=\"name-status-label\">\n      <div *ngIf=\"isNameConflict\" class=\"name-conflict-message\">\"{{name.value}}\" already exists!</div>\n    </div>\n  </div>\n  <div>\n    <md-input formControlName=\"source\" type=\"url\" placeholder=\"website url\">\n      <md-hint align=\"start\" [hidden]=\"source.valid || !source.errors.validationFail\">\n        must be a valid url (e.g., http://www.google.com)\n      </md-hint>      \n    </md-input>\n  </div>\n  <div><md-input formControlName=\"description\" type=\"text\" placeholder=\"description (optional)\" maxLength=\"500\"></md-input></div>\n  <div class=\"action-buttons\">\n    <button md-raised-button color=\"primary\" type=\"reset\">Reset</button>\n    <button md-raised-button color=\"primary\" type=\"submit\" [disabled]=\"!siteForm.valid || isNameConflict\" class=\"save-button\">Save</button>\n  </div>\n</form>"
 
 /***/ },
 /* 752 */
 /***/ function(module, exports) {
 
-module.exports = "<div class=\"home-content\">\n  <md-card>\n    <md-card-content>\n      <h2>Give the website link an awesome name! For memorizing! For sharing!</h2>\n      <h3><button md-raised-button color=\"primary\" (click)=\"signIn()\">Sign In</button> to save the weblinks you created.</h3>\n    </md-card-content>\n  </md-card>\n\n  <md-card>\n    <md-card-title>Create a Site Anonymously</md-card-title>\n    <md-divider></md-divider>\n    <md-card-content>\n      <sites-run-create-site [mode]=\"mode\" (siteSaved)=\"onSiteSaved($event)\"></sites-run-create-site>\n    </md-card-content>\n  </md-card>\n</div>\n\n<footer>\n  <span>Contact information: <a href=\"mailto:admin@sites.run\">admin@sites.run</a>. |</span>\n  <span> All Rights Reserved</span>\n</footer>"
+module.exports = "<div class=\"home-content\">\n  <md-card>\n    <md-card-content>\n      <h2>Give the website link an awesome name! For memorizing! For sharing!</h2>\n      <h3><button md-button (click)=\"signIn()\">Sign In</button> to save the weblinks you created.</h3>\n    </md-card-content>\n  </md-card>\n\n  <md-card>\n    <md-card-title>Create a Site Anonymously</md-card-title>\n    <md-divider></md-divider>\n    <md-card-content>\n      <sites-run-create-site [mode]=\"mode\" (siteSaved)=\"onSiteSaved($event)\"></sites-run-create-site>\n    </md-card-content>\n  </md-card>\n</div>\n\n<footer>\n  <span>Contact information: <a href=\"mailto:admin@sites.run\">admin@sites.run</a>. |</span>\n  <span> All Rights Reserved</span>\n</footer>"
 
 /***/ },
 /* 753 */
