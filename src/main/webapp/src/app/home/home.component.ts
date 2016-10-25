@@ -1,4 +1,8 @@
 import {Component} from '@angular/core';
+import {Router} from '@angular/router';
+import {Location} from '@angular/common';
+
+import {AuthService} from '../services/auth.service';
 
 import {Mode} from '../common/mode'
 
@@ -8,9 +12,15 @@ import {Mode} from '../common/mode'
   styleUrls: ['home.component.scss'],
 })
 export class HomeComponent {
-  mode: Mode;
+  mode: Mode = Mode.ANONYMOUS;
 
-  constructor() {
-    this.mode = Mode.ANONYMOUS;
+  constructor(private location_: Location, private router_: Router, private auth_: AuthService) {
+    if (this.auth_.isSignedIn()) {
+      this.location_.go('/_my');
+    }
+  }
+
+  signIn() {
+    this.auth_.signIn().then(() => this.router_.navigate(['/_my']));
   }
 }

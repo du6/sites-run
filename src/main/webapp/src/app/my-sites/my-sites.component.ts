@@ -1,6 +1,8 @@
 import {Component, ChangeDetectorRef} from '@angular/core';
 import { List } from 'immutable';
+import {Location} from '@angular/common';
 
+import {AuthService} from '../services/auth.service';
 import {Mode} from '../common/mode';
 import {Site} from '../common/site';
 import {GapiService} from '../services/gapi.service';
@@ -16,8 +18,14 @@ export class MySitesComponent {
   sites: List<Site> = List<Site>();
 
   constructor(
-    private gapi_: GapiService, 
-    private changeDetectorRef_: ChangeDetectorRef) {}
+      private location_: Location, 
+      private auth_: AuthService,
+      private gapi_: GapiService, 
+      private changeDetectorRef_: ChangeDetectorRef) {
+    if (!this.auth_.isSignedIn()) {
+      this.location_.go('/');
+    }
+  }
 
   ngOnInit() {
     this.loadSites();

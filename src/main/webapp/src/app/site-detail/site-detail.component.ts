@@ -1,4 +1,10 @@
-import {Input, Output, Component, EventEmitter, ViewContainerRef} from '@angular/core';
+import {
+  Input,
+  Output,
+  Component, 
+  EventEmitter, 
+  ViewContainerRef
+} from '@angular/core';
 
 import {Site} from '../common/site';
 import {GapiService} from '../services/gapi.service';

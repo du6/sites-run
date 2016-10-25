@@ -1,13 +1,17 @@
 @import '../common/color';
 
 md-list.site-list {
-  md-list-item .md-list-item {
-    align-items: flex-start;
-    border-bottom: 1px solid gray;
-    height: 100%;
-    min-height: 62px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+  md-list-item {
+    display: block;
+    
+    .md-list-item {
+      align-items: flex-start;
+      border-bottom: 1px solid gray;
+      height: 100%;
+      min-height: 62px;
+      padding-top: 10px;
+      padding-bottom: 10px;
+    }
 
     .delete-button {
       display: none;
