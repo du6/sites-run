@@ -3,8 +3,8 @@ import {Router} from '@angular/router';
 import {Location} from '@angular/common';
 
 import {AuthService} from '../services/auth.service';
-
 import {Mode} from '../common/mode'
+import {Site} from '../common/site';
 
 @Component({
   selector: 'sites-run-home',
@@ -22,5 +22,9 @@ export class HomeComponent {
 
   signIn() {
     this.auth_.signIn().then(() => this.router_.navigate(['/_my']));
+  }
+
+  onSiteSaved(site: Site) {
+
   }
 }
