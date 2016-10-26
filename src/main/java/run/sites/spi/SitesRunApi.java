@@ -373,7 +373,7 @@ public class SitesRunApi {
 
   /**
    * Deletes a Site object with the given siteId.
-   *
+   * @param user A user who invokes this method, null when the user is not signed in.
    * @param websafeSiteKey The String representation of the Site Key.
    * @throws NotFoundException when there is no Site with the given siteId.
    */
@@ -383,13 +383,28 @@ public class SitesRunApi {
       httpMethod = HttpMethod.DELETE
   )
   public void deleteSite(
+      final User user,
       @Named("websafeSiteKey") final String websafeSiteKey)
-      throws NotFoundException {
+      throws NotFoundException, UnauthorizedException, ForbiddenException {
+    final String userId = getUserId(user);
+    // If not signed in, throw a 401 error.
+    if (user == null) {
+      throw new UnauthorizedException("Authorization required");
+    }
     Key<Site> siteKey = Key.create(websafeSiteKey);
     Site site = ofy().load().key(siteKey).now();
     if (site == null) {
       throw new NotFoundException("No Site found with key: " + websafeSiteKey);
     } else {
+      if (site.getOwnerUserId().equals(ANONYMOUS_USER_ID)) {
+        throw new ForbiddenException("Sites created anonymously cannot be deleted.");
+      }
+      // If the user is not the owner, throw a 403 error.
+      Profile profile = ofy().load().key(Key.create(Profile.class, userId)).now();
+      if (profile == null ||
+          !site.getOwnerUserId().equals(userId)) {
+        throw new ForbiddenException("Only the owner can delete the site.");
+      }
       ofy().delete().key(siteKey).now();
     }
   }
