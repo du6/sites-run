@@ -29,7 +29,7 @@ export class SiteDetailComponent {
     this.gapi_.deleteSite(this.site.websafeKey)
         .then(() => {
           this.siteDeleted.emit(this.site);
-          this.toast_.actionSuccessToast(`Site "${this.site.name}" has been deleted.`, this.viewContainerRef_);
-        }, () => this.toast_.actionFailureToast('Site deletion failed!', this.viewContainerRef_));
+          this.toast_.displayToast(`"sites.run/${this.site.name}" has been deleted.`);
+        }, (error) => this.toast_.displayToast('Site deletion failed! Error: ', error.result.error.message));
   }
 }

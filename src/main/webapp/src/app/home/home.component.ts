@@ -24,7 +24,5 @@ export class HomeComponent {
     this.auth_.signIn().then(() => this.router_.navigate(['/_my']));
   }
 
-  onSiteSaved(site: Site) {
-
-  }
+  onSiteSaved(site: Site) {}
 }

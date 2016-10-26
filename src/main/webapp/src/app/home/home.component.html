@@ -2,12 +2,12 @@
   <md-card>
     <md-card-content>
       <h2>Give the website link an awesome name! For memorizing! For sharing!</h2>
-      <h3><button md-button (click)="signIn()">Sign In</button> to save the weblinks you created.</h3>
+      <h3><button md-button (click)="signIn()">Sign In</button> to save the weblinks you named.</h3>
     </md-card-content>
   </md-card>
 
   <md-card>
-    <md-card-title>Create a Site Anonymously</md-card-title>
+    <md-card-title>Name a Site Anonymously</md-card-title>
     <md-divider></md-divider>
     <md-card-content>
       <sites-run-create-site [mode]="mode" (siteSaved)="onSiteSaved($event)"></sites-run-create-site>
