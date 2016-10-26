@@ -9,11 +9,11 @@ export class ToastService {
 
   actionSuccessToast(message: string, viewContainerRef: ViewContainerRef) {
     const config = new MdSnackBarConfig(viewContainerRef);
-    //this.snackBar_.open(message, 'Dismiss', config);
+    this.snackBar_.open(message, 'Dismiss', config);
   }
 
   actionFailureToast(message: string, viewContainerRef: ViewContainerRef) {
     const config = new MdSnackBarConfig(viewContainerRef);
-    //this.snackBar_.open(message, 'Dismiss', config);
+    this.snackBar_.open(message, 'Dismiss', config);
   }
 }
