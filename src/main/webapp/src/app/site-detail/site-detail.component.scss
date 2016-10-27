@@ -14,5 +14,12 @@
   .delete-button {
     background-color: $button-background-color;
     margin-right: 20px;
+    min-width: 40px;
+  }
+
+  .site-info {
+    overflow-wrap: break-word;
+    word-break: break-word;
+    word-wrap: break-word;
   }
 }
