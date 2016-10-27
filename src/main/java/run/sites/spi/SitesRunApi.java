@@ -410,6 +410,43 @@ public class SitesRunApi {
   }
 
   /**
+   * Deletes a Site object with the given siteId.
+   * @param user A user who invokes this method, null when the user is not signed in.
+   * @param name The name of the site.
+   * @throws NotFoundException when there is no Site with the given siteId.
+   */
+  @ApiMethod(
+      name = "deleteSiteByName",
+      path = "deleteSiteByName/{name}",
+      httpMethod = HttpMethod.DELETE
+  )
+  public void deleteSiteByName(
+      final User user,
+      @Named("name") final String name)
+      throws NotFoundException, UnauthorizedException, ForbiddenException {
+    final String userId = getUserId(user);
+    // If not signed in, throw a 401 error.
+    if (user == null) {
+      throw new UnauthorizedException("Authorization required");
+    }
+    Site site = ofy().load().type(Site.class).id(name).now();
+    if (site == null) {
+      throw new NotFoundException("No Site found with name: " + name);
+    } else {
+      if (site.getOwnerUserId().equals(ANONYMOUS_USER_ID)) {
+        throw new ForbiddenException("Sites created anonymously cannot be deleted.");
+      }
+      // If the user is not the owner, throw a 403 error.
+      Profile profile = ofy().load().key(Key.create(Profile.class, userId)).now();
+      if (profile == null ||
+          !site.getOwnerUserId().equals(userId)) {
+        throw new ForbiddenException("Only the owner can delete the site.");
+      }
+      ofy().delete().type(Site.class).id(name).now();
+    }
+  }
+
+  /**
    * Returns a list of Sites that the user created.
    * In order to receive the websafeSiteKey via the JSON params, uses a POST method.
    *

@@ -58,5 +58,7 @@ export class MySitesComponent {
     if (index !== -1) {
       this.sites = this.sites.delete(index);
     }
+    //TODO(du6): update view automatically
+    this.changeDetectorRef_.detectChanges();
   }
 }

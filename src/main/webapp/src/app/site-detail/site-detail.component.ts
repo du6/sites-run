@@ -26,7 +26,7 @@ export class SiteDetailComponent {
   }
 
   deleteSite() {
-    this.gapi_.deleteSite(this.site.websafeKey)
+    this.gapi_.deleteSiteByName(this.site.name)
         .then(() => {
           this.siteDeleted.emit(this.site);
           this.toast_.displayToast(`"sites.run/${this.site.name}" has been deleted.`);
